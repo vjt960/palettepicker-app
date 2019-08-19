@@ -49,9 +49,9 @@
   transition: 0.07s border ease-in-out;
 }
 
-.color-bar:active {
+/* .color-bar:active {
   filter: grayscale(1);
-}
+} */
 
 .color-block:hover > .color-bar {
   border-top: none;

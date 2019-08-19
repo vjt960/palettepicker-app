@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ColorScheme from "color-scheme";
+import uuidv1 from "uuid/v1";
+import ColorBar from "../ColorBar/ColorBar";
 import "./PalettePicker.css";
 
 export default class PalettePicker extends Component {
@@ -9,11 +11,6 @@ export default class PalettePicker extends Component {
     variation: "pastel",
     bookmarked: false,
     colors: []
-  };
-
-  handleBookmarked = () => {
-    const bookmarked = this.state.bookmarked;
-    this.setState({ bookmarked: !bookmarked });
   };
 
   generateRandomHue = () => {
@@ -32,36 +29,25 @@ export default class PalettePicker extends Component {
     return scheme.colors();
   };
 
-  createColorBlocks = (vRotate = this.props.vRotate, speed = 8) => {
+  createColorBlocks = () => {
     const generatedColors = this.generateColors();
     const colors = generatedColors.splice(0, this.props.totalColors);
+    console.log(colors);
     return colors.map((color, i) => {
-      const colorBarStyle = {
-        backgroundColor: `#${color}`
-      };
-      const blockStyle = {
-        // transform: `translateY(${this.state.bookmarked ? -150 : 50}%)`,
-        transform: "translateY(-150%)",
-        animation: `move 0.7s ease-in ${i / speed}s forwards`
-      };
-      console.log(blockStyle);
+      const uuid = uuidv1();
       return (
-        <div className="color-block" style={blockStyle}>
-          <div className={`color-bar color-${i + 1}`} style={colorBarStyle}>
-            <p className={vRotate && "color-bar-text-vertical"}>
-              {"#" + color.toUpperCase()}
-            </p>
-          </div>
-          <button>Save?</button>
-        </div>
+        <ColorBar
+          color={color}
+          vRotate={this.props.vRotate}
+          number={i}
+          key={uuid}
+        />
       );
     });
   };
   render() {
     return (
-      <section className="PalettePicker" onClick={this.handleBookmarked}>
-        {this.createColorBlocks()}
-      </section>
+      <section className="PalettePicker">{this.createColorBlocks()}</section>
     );
   }
 }
