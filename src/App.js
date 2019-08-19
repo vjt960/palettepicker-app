@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import PalettePicker from "./components/PalettePicker/PalettePicker";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="NavBar">
+        <p>NavBar</p>
       </header>
+      <main className="MainPage">
+        <PalettePicker />
+        <section className="PalettesContainer">
+          <section className="ProjectBox">
+            <article className="Palette">Palette</article>
+          </section>
+        </section>
+      </main>
     </div>
   );
 }
