@@ -5,13 +5,14 @@
 }
 
 .NavBar {
-  /* text-align: center; */
-  border: 1px solid green;
+  position: relative;
+  border: 2px solid green;
   min-height: 5vh;
+  z-index: 2;
+  background-color: white;
 }
 
 .MainPage {
-  border: 1px solid blue;
   min-height: 95vh;
 }
 
