@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import PalettePicker from "./components/PalettePicker/PalettePicker";
 
 function App() {
   return (
@@ -8,9 +9,7 @@ function App() {
         <p>NavBar</p>
       </header>
       <main className="MainPage">
-        <section className="PaletteBox">
-          <p>PaletteBox</p>
-        </section>
+        <PalettePicker />
         <section className="PalettesContainer">
           <section className="ProjectBox">
             <article className="Palette">Palette</article>

@@ -15,11 +15,6 @@
   min-height: 95vh;
 }
 
-.PaletteBox {
-  border: 1px solid red;
-  height: 70vh;
-}
-
 .ProjectBox {
   border: 1px solid red;
   min-height: 25vh;
