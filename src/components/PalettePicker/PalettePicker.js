@@ -47,7 +47,10 @@ export default class PalettePicker extends Component {
   };
   render() {
     return (
-      <section className="PalettePicker">{this.createColorBlocks()}</section>
+      <section className="PalettePicker">
+        <div className="colors-section">{this.createColorBlocks()}</div>
+        <div className="button-bar">SelectionBar</div>
+      </section>
     );
   }
 }

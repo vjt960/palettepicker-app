@@ -24,6 +24,7 @@ export default class ColorBar extends Component {
       borderBottom: "5px solid black"
     };
     const lockedStyle = {
+      visibility: "visible",
       height: "15%",
       opacity: 1
     };
