@@ -9,8 +9,17 @@ export default class PalettePicker extends Component {
     hue: null,
     colorScheme: null,
     variation: "pastel",
-    bookmarked: false,
-    colors: []
+    colors: [],
+    editable: false
+  };
+
+  componentDidMount() {
+    this.generateColors();
+  }
+
+  toggleEditable = () => {
+    const toggle = this.state.editable;
+    this.setState({ editable: !toggle });
   };
 
   generateRandomHue = () => {
@@ -26,30 +35,48 @@ export default class PalettePicker extends Component {
       .from_hue(hue || this.generateRandomHue())
       .scheme(colorScheme || pColorScheme)
       .variation(variation);
-    return scheme.colors();
+    const colors = scheme.colors().map(color => {
+      return "#" + color;
+    });
+    this.setState({ colors });
   };
 
   createColorBlocks = () => {
     const generatedColors = this.generateColors();
     const colors = generatedColors.splice(0, this.props.totalColors);
-    console.log(colors);
-    return colors.map((color, i) => {
-      const uuid = uuidv1();
+  };
+  render() {
+    const editBarActive = {
+      transform: "translateY(0%)"
+    };
+    const colors = this.state.colors.map((color, i) => {
       return (
         <ColorBar
           color={color}
           vRotate={this.props.vRotate}
           number={i}
-          key={uuid}
+          // key={uuid}
         />
       );
     });
-  };
-  render() {
     return (
       <section className="PalettePicker">
-        <div className="colors-section">{this.createColorBlocks()}</div>
-        <div className="button-bar">SelectionBar</div>
+        <div
+          className="edit-block"
+          style={this.state.editable ? editBarActive : null}
+        >
+          <form>
+            <label htmlFor="hue-selection" />
+            <input type="text" placeholder="hue" name="hue-selection" />
+          </form>
+        </div>
+        <div className="colors-section">{colors}</div>
+        <div className="button-bar">
+          <button className="primary-btn" onClick={this.toggleEditable}>
+            Edit Colors
+          </button>
+          <button className="primary-btn">Save</button>
+        </div>
       </section>
     );
   }
