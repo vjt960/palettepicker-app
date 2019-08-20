@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 80vh;
+  height: 70vh;
   overflow: hidden;
   z-index: 2;
   border-bottom: 10px solid coral;
-  /* box-shadow: -1px 3px 5px 4px rgba(0, 0, 0, 0.75); */
   box-shadow: -1px 10px 12px 5px rgba(0, 0, 0, 0.75);
 }
 
@@ -39,7 +38,6 @@
 }
 
 .edit-block {
-  /* border: 1px solid red; */
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -74,7 +72,6 @@
 .update-btn:active {
   outline: none;
   box-shadow: inset -2px 2px 1px 2px rgba(0, 0, 0, 0.75);
-  /* transform: translateX(15%); */
 }
 
 .update-btn > p {
@@ -109,12 +106,10 @@ label {
 .radio-styles > label {
   display: flex;
   justify-content: space-between;
-  /* color: red; */
 }
 
 .PhraseBlock {
   position: absolute;
-  /* border: 1px solid green; */
   z-index: 2;
   text-align: center;
   width: 100%;
