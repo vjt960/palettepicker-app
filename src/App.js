@@ -9,7 +9,7 @@ function App() {
         <p>NavBar</p>
       </header>
       <main className="MainPage">
-        <PalettePicker vRotate={0} totalColors={25} pColorScheme="analogic" />
+        <PalettePicker vRotate={1} totalColors={25} />
         <section className="PalettesContainer">
           <section className="ProjectBox">
             <article className="Palette">Palette</article>

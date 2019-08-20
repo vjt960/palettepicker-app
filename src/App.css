@@ -5,11 +5,15 @@
 }
 
 .NavBar {
-  position: relative;
+  position: sticky;
+  top: 0;
+  width: 100%;
   border: 1px solid green;
   min-height: 5vh;
-  z-index: 2;
+  z-index: 3;
   background-color: white;
+  border-bottom: 2px solid coral;
+  box-shadow: -1px -5px 5px 6px rgba(0, 0, 0, 0.75);
 }
 
 .MainPage {
@@ -17,7 +21,10 @@
 }
 
 .ProjectBox {
-  /* border: 1px solid red; */
+  position: relative;
+  border: 1px solid red;
+  background-color: white;
+  z-index: 1;
   min-height: 25vh;
 }
 
