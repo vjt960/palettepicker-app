@@ -166,7 +166,7 @@ export default class PalettePicker extends Component {
               </label>
             </section>
             <section className="radio-styles">
-              <h4>Color schemes:</h4>
+              <h4>Color Variations:</h4>
               <label htmlFor="default">
                 default
                 <input
