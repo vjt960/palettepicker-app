@@ -1,22 +1,23 @@
 .App {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   min-height: 100vh;
   max-width: 100vw;
 }
 
 .NavBar {
-  /* text-align: center; */
+  position: relative;
   border: 1px solid green;
   min-height: 5vh;
+  z-index: 2;
+  background-color: white;
 }
 
 .MainPage {
-  border: 1px solid blue;
   min-height: 95vh;
 }
 
 .ProjectBox {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   min-height: 25vh;
 }
 
