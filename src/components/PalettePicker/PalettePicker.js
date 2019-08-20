@@ -50,7 +50,7 @@ export default class PalettePicker extends Component {
   generateColors = () => {
     // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
     const { hue, colorScheme, variation } = this.state;
-    const { pColorScheme = "mono" } = this.props;
+    const { pColorScheme = "triade" } = this.props;
     const scheme = new ColorScheme();
     scheme
       .from_hue(hue || this.generateRandomHue())
@@ -61,11 +61,6 @@ export default class PalettePicker extends Component {
     });
     this.setState({ colors });
   };
-
-  // createColorBlocks = () => {
-  //   const generatedColors = this.generateColors();
-  //   const colors = generatedColors.splice(0, this.props.totalColors);
-  // };
 
   render() {
     const editBarActive = {
@@ -124,7 +119,6 @@ export default class PalettePicker extends Component {
                   type="radio"
                   name="colorScheme-selection"
                   value="mono"
-                  defaultChecked
                   onClick={e => this.updateColorScheme(e)}
                 />
               </label>
@@ -143,6 +137,7 @@ export default class PalettePicker extends Component {
                   type="radio"
                   name="colorScheme-selection"
                   value="triade"
+                  defaultChecked
                   onClick={e => this.updateColorScheme(e)}
                 />
               </label>
