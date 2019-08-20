@@ -6,10 +6,14 @@ function App() {
   return (
     <div className="App">
       <header className="NavBar">
-        <p>NavBar</p>
+        <h2>PalettePicker</h2>
+        <form className="navbar-form">
+          <button>Login</button>
+          <button>Register</button>
+        </form>
       </header>
       <main className="MainPage">
-        <PalettePicker vRotate={1} totalColors={25} />
+        <PalettePicker vRotate={0} totalColors={25} />
         <section className="PalettesContainer">
           <article className="palettes-header">
             <p>This area is where your projects will be saved!</p>
