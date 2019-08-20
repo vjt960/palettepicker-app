@@ -13,14 +13,14 @@ export default class ColorBar extends Component {
 
   render() {
     const colorBarStyle = {
-      backgroundColor: `#${this.props.color}`
+      backgroundColor: `${this.props.color}`
     };
     const defaultStyle = {
       transform: "translateY(-150%)",
       animation: `move 0.7s ease-in ${this.props.number / 8}s forwards`
     };
     const lockedBarStyle = {
-      backgroundColor: `#${this.props.color}`,
+      backgroundColor: `${this.props.color}`,
       borderBottom: "5px solid black"
     };
     const lockedStyle = {
@@ -35,7 +35,7 @@ export default class ColorBar extends Component {
           style={this.state.locked ? lockedBarStyle : colorBarStyle}
         >
           <p className={this.props.vRotate && "color-bar-text-vertical"}>
-            {"#" + this.props.color.toUpperCase()}
+            {this.props.color.toUpperCase()}
           </p>
         </div>
         <button
