@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
+import ProjectsContainer from "./components/ProjectsContainer/ProjectsContainer";
 import PalettePicker from "./components/PalettePicker/PalettePicker";
-import ProjectContainer from "./components/ProjectContainer/ProjectContainer";
 
 function App() {
   return (
@@ -14,15 +14,8 @@ function App() {
         </form>
       </header>
       <main className="MainPage">
-        <PalettePicker vRotate={0} totalColors={25} />
-        <section className="PalettesContainer">
-          <article className="palettes-header">
-            <p>This area is where your projects will be saved!</p>
-          </article>
-          <ProjectContainer />
-          {/* <ProjectContainer />
-          <ProjectContainer /> */}
-        </section>
+        <PalettePicker />
+        <ProjectsContainer />
       </main>
     </div>
   );
