@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./ProjectContainer.css";
+import "./Project.css";
 
-export default class ProjectContainer extends Component {
+export default class Project extends Component {
   render() {
     return (
-      <section className="ProjectContainer">
+      <section className="Project">
         <div className="project-title">
           <h2>Alts -- send to steve</h2>
         </div>
