@@ -1,0 +1,12 @@
+.projects-container-header {
+  display: flex;
+  justify-content: center;
+  border-right: 1px dashed coral;
+  border-left: 1px dashed coral;
+  min-height: 30vh;
+  color: #ffffff;
+}
+
+.projects-container-header > p {
+  padding-top: 8.5vh;
+}
