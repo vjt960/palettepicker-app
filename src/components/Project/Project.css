@@ -17,7 +17,6 @@
   left: 2%;
   padding: 0.5rem 2rem;
   background-color: white;
-  /* border: 1px solid black; */
   transform: skew(35deg) rotate(1.5deg);
   background-color: coral;
 }
@@ -28,9 +27,7 @@
   top: -9%;
   right: 2%;
   border: 2px solid coral;
-  /* border-top: 1px solid rgb(40, 48, 56); */
   background-color: coral;
-  /* border-radius: 50%; */
   padding: 1rem 0.3rem 0.3rem 0.3rem;
   transform: skew(-15deg);
 }
@@ -39,7 +36,6 @@
   cursor: pointer;
   border: 2px solid rgb(40, 48, 56);
   background-color: rgb(40, 48, 56);
-  /* border-radius: 50%; */
   padding: 0.5rem 0.7rem;
   transform: skew(-5deg);
 }
@@ -58,39 +54,4 @@
   font-weight: 100;
   transform: skew(-35deg);
   color: white;
-}
-
-.Palette {
-  position: relative;
-  border: 2px solid coral;
-  border-bottom: 5px solid coral;
-
-  margin: 1rem;
-  margin-top: 3.5rem;
-  height: 100px;
-  width: 500px;
-  max-width: 25%;
-  min-width: 200px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Palette > .color {
-  border: 2px solid coral;
-  border-top: 3px solid coral;
-  border-radius: 5px;
-  flex: 1;
-  margin: 2%;
-  min-width: 5%;
-  /* height: 30%;
-  width: 10%; */
-}
-
-.palette-title {
-  position: absolute;
-  top: -24px;
-  left: -8px;
-  transform: rotate(-2deg);
-  color: rgb(40, 48, 56);
-  text-decoration: underline;
 }
