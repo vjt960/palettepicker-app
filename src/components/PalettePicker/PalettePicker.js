@@ -10,7 +10,6 @@ export default class PalettePicker extends Component {
     colorScheme: null,
     variation: "pastel",
     colors: [],
-    lockedColors: [],
     editable: false
   };
 
@@ -39,54 +38,57 @@ export default class PalettePicker extends Component {
     this.setState({ variation: value });
   };
 
-  updateColors = e => {
+  updateColors = (e, previousColors) => {
     e.preventDefault();
-    this.generateColors();
+    this.generateColors(previousColors);
   };
 
   generateRandomHue = () => {
     return Math.floor(Math.random() * (360 + 1));
   };
 
-  lockColor = targetColor => {
+  handleLockStatus = (targetColor, lockStatus) => {
     const colorIndex = this.state.colors.findIndex(color => {
       return targetColor === color;
     });
-    const lockedColor = { index: colorIndex, color: targetColor };
-    const lockedColors = [...this.state.lockedColors, lockedColor];
-    this.setState({
-      lockedColors
-    });
+    const colors = this.state.colors.slice();
+    colors[colorIndex].locked = lockStatus;
+    this.setState({ colors });
   };
 
-  unlockColor = targetColor => {
-    const colorIndex = this.state.lockedColors.findIndex(lockedColor => {
-      return lockedColor.color === targetColor;
-    });
-    const newLockedColors = this.state.lockedColors;
-    newLockedColors.splice(colorIndex, 1);
-    this.setState({ lockedColors: newLockedColors });
-  };
-
-  generateColors = () => {
+  generateColors = (previousColors = []) => {
     // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
-    const { hue, colorScheme, variation } = this.state;
+    const { hue, colorScheme, variation, colors, lockedColors } = this.state;
     const { pColorScheme = "triade" } = this.props;
     const scheme = new ColorScheme();
     scheme
       .from_hue(hue || this.generateRandomHue())
       .scheme(colorScheme || pColorScheme)
       .variation(variation);
-    const colors = scheme.colors().map(color => {
-      return "#" + color;
+    const generatedColors = scheme.colors().map(color => {
+      return { hex: "#" + color, locked: false };
     });
-    if (this.state.lockedColors.length) {
-      this.state.lockedColors.forEach(color => {
-        colors.splice(color.index, 1, color.color);
-      });
-      return this.setState({ colors });
-    }
-    this.setState({ colors });
+    this.setState({ colors: generatedColors });
+    // console.log(generatedColors);
+    // if (
+    //   generatedColors.length < previousColors.length &&
+    //   this.state.lockedColors.length
+    // ) {
+    //   console.log("1");
+    //   this.state.lockedColors.forEach(color => {
+    //     generatedColors.push(color.color);
+    //   });
+    //   return this.setState({ colors: generatedColors });
+    // } else if (this.state.lockedColors.length) {
+    //   console.log("2");
+    //   this.state.lockedColors.forEach(color => {
+    //     generatedColors.splice(color.index, 1, color.color);
+    //   });
+    //   return this.setState({ colors: generatedColors });
+    // } else {
+    //   console.log("3");
+    //   this.setState({ colors: generatedColors });
+    // }
   };
 
   render() {
@@ -99,8 +101,7 @@ export default class PalettePicker extends Component {
           color={color}
           vRotate={this.props.vRotate}
           number={i}
-          lockColor={this.lockColor}
-          unlockColor={this.unlockColor}
+          handleLockStatus={this.handleLockStatus}
           // key={uuid}
         />
       );
@@ -127,7 +128,10 @@ export default class PalettePicker extends Component {
           className="edit-block"
           style={this.state.editable ? editBarActive : null}
         >
-          <form className="edits-form" onSubmit={e => this.updateColors(e)}>
+          <form
+            className="edits-form"
+            onSubmit={e => this.updateColors(e, this.state.colors)}
+          >
             <div>
               <h4>Hue Selection:</h4>
               <label htmlFor="hue-selection">
