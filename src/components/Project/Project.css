@@ -13,12 +13,22 @@
 
 .project-title {
   position: absolute;
+  z-index: 2;
   top: -9%;
   left: 2%;
   padding: 0.5rem 2rem;
   background-color: white;
   transform: skew(35deg) rotate(1.5deg);
   background-color: coral;
+}
+
+.dotted-line {
+  position: absolute;
+  z-index: 1;
+  top: -45%;
+  width: 92%;
+  height: 100px;
+  border-bottom: 1px dashed coral;
 }
 
 .delete-wrapper {
