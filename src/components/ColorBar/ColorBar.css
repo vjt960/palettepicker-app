@@ -3,7 +3,6 @@
   flex-direction: column;
   flex: 1;
   height: 100.5%;
-  /* border: 1px solid red; */
 }
 
 .color-block:hover {
@@ -18,15 +17,16 @@
   margin: 0;
   padding: 0;
   height: 0%;
-  /* border: 1px solid red; */
+  background-color: rgb(40, 48, 56);
 }
 
 .lock-button:focus {
   outline: none;
+  /* background-color: red; */
 }
 
 i {
-  color: #1f2138;
+  color: white;
 }
 
 .color-block:hover > button {
