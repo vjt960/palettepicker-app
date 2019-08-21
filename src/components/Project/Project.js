@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import "./Project.css";
+import Palette from "../Palette/Palette";
 
 export default class Project extends Component {
+  state = {
+    colors: [
+      { title: "Ok here is title", colors: ["#45CD12", "#DFD442", "#4E3211"] },
+      { title: "Idea - 2 Colors", colors: ["#123456"] },
+      { title: "Serene", colors: ["#654321", "#ABCDEF"] },
+      {
+        title: "-- Send to Steve",
+        colors: ["#FEDCBA", "#FEDFED", "#ABCABC", "#123123", "#3A3A3A"]
+      }
+    ]
+  };
   render() {
+    const colors = this.state.colors.map(color => {
+      return <Palette title={color.title} colors={color.colors} />;
+    });
     return (
       <section className="Project">
         <div className="project-title">
@@ -13,43 +28,7 @@ export default class Project extends Component {
             <h2>X</h2>
           </div>
         </div>
-        <article className="Palette">
-          <h4 className="palette-title">An Especially Long Title</h4>
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-        </article>
-        <article className="Palette">
-          <h4 className="palette-title">Untitled</h4>
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-        </article>
-        <article className="Palette">
-          <h4 className="palette-title">Design Primary</h4>
-          <div className="color" />
-        </article>
-        <article className="Palette">
-          <h4 className="palette-title">Design Alt</h4>
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-          <div className="color" />
-        </article>
+        {colors}
       </section>
     );
   }
