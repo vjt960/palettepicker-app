@@ -1,0 +1,32 @@
+.Palette {
+  position: relative;
+  border: 2px solid coral;
+  border-bottom: 5px solid coral;
+
+  margin: 1rem;
+  margin-top: 3.5rem;
+  height: 100px;
+  width: 500px;
+  max-width: 25%;
+  min-width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Palette > .color {
+  border: 2px solid coral;
+  border-top: 3px solid coral;
+  border-radius: 5px;
+  flex: 1;
+  margin: 2%;
+  min-width: 5%;
+}
+
+.palette-title {
+  position: absolute;
+  top: -24px;
+  left: -8px;
+  transform: rotate(-2deg);
+  color: rgb(40, 48, 56);
+  text-decoration: underline;
+}
