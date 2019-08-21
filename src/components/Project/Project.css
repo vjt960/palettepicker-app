@@ -1,11 +1,11 @@
-.ProjectContainer {
+.Project {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   border-top: 1px solid coral;
   border-bottom: 5px solid coral;
-  margin-bottom: 3px;
+  margin-bottom: 0.2rem;
   background-color: white;
   z-index: 1;
   min-height: 25vh;
