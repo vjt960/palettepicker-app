@@ -10,6 +10,7 @@ export default class PalettePicker extends Component {
     colorScheme: null,
     variation: "pastel",
     colors: [],
+    lockedColors: [],
     editable: false
   };
 
@@ -47,6 +48,26 @@ export default class PalettePicker extends Component {
     return Math.floor(Math.random() * (360 + 1));
   };
 
+  lockColor = targetColor => {
+    const colorIndex = this.state.colors.findIndex(color => {
+      return targetColor === color;
+    });
+    const lockedColor = { index: colorIndex, color: targetColor };
+    const lockedColors = [...this.state.lockedColors, lockedColor];
+    this.setState({
+      lockedColors
+    });
+  };
+
+  unlockColor = targetColor => {
+    const colorIndex = this.state.lockedColors.findIndex(lockedColor => {
+      return lockedColor.color === targetColor;
+    });
+    const newLockedColors = this.state.lockedColors;
+    newLockedColors.splice(colorIndex, 1);
+    this.setState({ lockedColors: newLockedColors });
+  };
+
   generateColors = () => {
     // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
     const { hue, colorScheme, variation } = this.state;
@@ -59,6 +80,7 @@ export default class PalettePicker extends Component {
     const colors = scheme.colors().map(color => {
       return "#" + color;
     });
+    console.log(colors);
     this.setState({ colors });
   };
 
@@ -72,6 +94,8 @@ export default class PalettePicker extends Component {
           color={color}
           vRotate={this.props.vRotate}
           number={i}
+          lockColor={this.lockColor}
+          unlockColor={this.unlockColor}
           // key={uuid}
         />
       );
