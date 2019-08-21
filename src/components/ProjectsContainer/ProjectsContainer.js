@@ -28,6 +28,20 @@ export default class ProjectsContainer extends Component {
             ]
           }
         ]
+      },
+      {
+        projectTitle: "My Favorites!",
+        palettes: [
+          {
+            paletteTitle: "For Mary",
+            paletteColors: ["#568111", "#512612", "#EA31EA"]
+          },
+          { paletteTitle: "Idea - ???", paletteColors: ["#123456", "#99EE32"] },
+          {
+            paletteTitle: "Iteration 2",
+            paletteColors: ["#FEDCBA", "#FFFFDD", "#AABBE1", "#3A3A3A"]
+          }
+        ]
       }
     ]
   };
@@ -37,13 +51,25 @@ export default class ProjectsContainer extends Component {
         <Project title={project.projectTitle} palettes={project.palettes} />
       );
     });
+    const textMessage = this.state.projects.length ? (
+      <p>Here are your projects!</p>
+    ) : (
+      <p>This area is where your projects will be saved!</p>
+    );
+
     return (
       <div>
         <section className="ProjectsContainer">
-          <header className="projects-container-header">
-            <p>This area is where your projects will be saved!</p>
-          </header>
-          {projects}
+          <React.Fragment>
+            <header
+              className={`projects-container-header ${
+                this.state.projects.length ? null : "header-hidden"
+              }`}
+            >
+              {textMessage}
+            </header>
+            {projects}
+          </React.Fragment>
         </section>
       </div>
     );
