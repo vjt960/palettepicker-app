@@ -80,7 +80,12 @@ export default class PalettePicker extends Component {
     const colors = scheme.colors().map(color => {
       return "#" + color;
     });
-    console.log(colors);
+    if (this.state.lockedColors.length) {
+      this.state.lockedColors.forEach(color => {
+        colors.splice(color.index, 1, color.color);
+      });
+      return this.setState({ colors });
+    }
     this.setState({ colors });
   };
 
