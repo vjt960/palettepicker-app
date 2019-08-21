@@ -1,0 +1,57 @@
+.Project {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid coral;
+  border-bottom: 5px solid coral;
+  margin-bottom: 0.2rem;
+  background-color: white;
+  z-index: 1;
+  min-height: 25vh;
+}
+
+.project-title {
+  position: absolute;
+  top: -9%;
+  left: 2%;
+  padding: 0.5rem 2rem;
+  background-color: white;
+  transform: skew(35deg) rotate(1.5deg);
+  background-color: coral;
+}
+
+.delete-wrapper {
+  position: absolute;
+  z-index: 2;
+  top: -9%;
+  right: 2%;
+  border: 2px solid coral;
+  background-color: coral;
+  padding: 1rem 0.3rem 0.3rem 0.3rem;
+  transform: skew(-15deg);
+}
+
+.project-delete {
+  cursor: pointer;
+  border: 2px solid rgb(40, 48, 56);
+  background-color: rgb(40, 48, 56);
+  padding: 0.5rem 0.7rem;
+  transform: skew(-5deg);
+}
+
+.project-delete > h2 {
+  pointer-events: none;
+  margin: 0;
+  color: white;
+  font-size: 16px;
+  transform: skew(2deg);
+}
+
+.project-title > h2 {
+  margin: 0;
+  font-family: "Carter One", cursive;
+  font-weight: 100;
+  transform: skew(-35deg);
+  color: white;
+}
