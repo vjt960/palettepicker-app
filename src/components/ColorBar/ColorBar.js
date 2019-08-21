@@ -6,9 +6,14 @@ export default class ColorBar extends Component {
     locked: false
   };
 
-  handleClick = () => {
-    const toggle = this.state.locked;
-    this.setState({ locked: !toggle });
+  lockColor = () => {
+    this.props.lockColor(this.props.color);
+    this.setState({ locked: true });
+  };
+
+  unlockColor = () => {
+    this.props.unlockColor(this.props.color);
+    this.setState({ locked: false });
   };
 
   render() {
@@ -40,7 +45,7 @@ export default class ColorBar extends Component {
         </div>
         <button
           className="lock-button"
-          onClick={this.handleClick}
+          onClick={this.state.locked ? this.unlockColor : this.lockColor}
           style={this.state.locked ? lockedStyle : null}
         >
           {this.state.locked ? (
