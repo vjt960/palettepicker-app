@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import ColorScheme from "color-scheme";
-import uuidv1 from "uuid/v1";
 import ColorBar from "../ColorBar/ColorBar";
 import "./PalettePicker.css";
 
 export default class PalettePicker extends Component {
   state = {
-    hue: null,
+    hue: "",
     hueLocked: false,
     colorScheme: "triade",
     variation: "pastel",
@@ -102,7 +101,7 @@ export default class PalettePicker extends Component {
           vRotate={this.props.vRotate}
           number={i}
           handleLockStatus={this.handleLockStatus}
-          // key={uuid}
+          key={i}
         />
       );
     });

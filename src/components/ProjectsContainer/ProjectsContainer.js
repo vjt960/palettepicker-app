@@ -35,7 +35,7 @@ export default class ProjectsContainer extends Component {
               "#123123",
               "#3A3A3A"
             ],
-            paletteId: "asd3a1DD3sd"
+            paletteId: "eee23aOO3sd"
           },
           {
             paletteTitle: "Iteration 4",
@@ -46,7 +46,7 @@ export default class ProjectsContainer extends Component {
               "#AABBE1",
               "#3A3A3A"
             ],
-            paletteId: "13AS3U98MN"
+            paletteId: "13ASeeU98MN"
           },
           {
             paletteTitle: "- Two Potential Options -",
@@ -82,7 +82,11 @@ export default class ProjectsContainer extends Component {
   render() {
     const projects = this.state.projects.map(project => {
       return (
-        <Project title={project.projectTitle} palettes={project.palettes} />
+        <Project
+          title={project.projectTitle}
+          palettes={project.palettes}
+          key={project.projectId}
+        />
       );
     });
     const textMessage = this.state.projects.length ? (
