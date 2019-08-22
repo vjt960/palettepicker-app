@@ -108,25 +108,27 @@ export default class PalettePicker extends Component {
     });
 
     const PhraseBlock = (
-      <div
+      <section
         className={`${
           !this.state.editable
             ? "PhraseBlock pb-active"
             : "PhraseBlock pd-inactive"
         }`}
       >
-        <div className="phrase-background">
+        <header className="phrase-background">
           <h2>Choose a color!</h2>
+        </header>
+        <section className="phrase-block-content">
+          <button onClick={e => this.updateColors(e, this.state.colors)}>
+            Refresh Colors
+          </button>
           <div className="current-format">
             <p>{this.state.hue || this.props.hue}</p>
             <p>{this.state.colorScheme || this.props.pColorScheme}</p>
             <p>{this.state.variation}</p>
           </div>
-          <button onClick={e => this.updateColors(e, this.state.colors)}>
-            Refresh Colors
-          </button>
-        </div>
-      </div>
+        </section>
+      </section>
     );
 
     return (
