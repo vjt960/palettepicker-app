@@ -28,9 +28,12 @@ export default class PalettePicker extends Component {
     this.setState({ hue: value });
   };
 
-  toggleHueLock = () => {
-    const toggle = this.state.hueLocked;
-    this.setState({ hueLocked: !toggle });
+  hueLock = () => {
+    this.setState({ hueLocked: true });
+  };
+
+  hueUnlock = () => {
+    this.setState({ hueLocked: false });
   };
 
   updateColorScheme = e => {
@@ -70,10 +73,9 @@ export default class PalettePicker extends Component {
     if (!hueLocked) {
       generatedHue = this.generateRandomHue();
     }
-    console.log(hue);
     const scheme = new ColorScheme();
     scheme
-      .from_hue(hue || generatedHue)
+      .from_hue(generatedHue || hue)
       .scheme(colorScheme || pColorScheme)
       .variation(variation);
     const generatedColors = scheme.colors().map(color => {
@@ -151,9 +153,9 @@ export default class PalettePicker extends Component {
                 />
               </label>
               {this.state.hueLocked ? (
-                <button onClick={this.toggleHueLock}>Unlock</button>
+                <button onClick={this.hueUnlock}>Unlock</button>
               ) : (
-                <button onClick={this.toggleHueLock}>Lock</button>
+                <button onClick={this.hueLock}>Lock</button>
               )}
             </div>
             <section className="radio-styles">
