@@ -4,9 +4,12 @@ import "./ProjectsContainer.css";
 
 export default class ProjectsContainer extends Component {
   state = {
+    user: { userId: "123ddEad2199E", username: "Elliot" },
     projects: [
       {
         projectTitle: "--Send to Steve",
+        projectId: "asd3213ey1u",
+        projectDesc: "Palettes that Steve requested ...",
         palettes: [
           {
             paletteTitle: "Ok here is title",
@@ -31,6 +34,8 @@ export default class ProjectsContainer extends Component {
       },
       {
         projectTitle: "My Favorites!",
+        projectId: "3ykuyOP23eeE",
+        projectDesc: "A list of my favorite palettes.",
         palettes: [
           {
             paletteTitle: "For Mary",
