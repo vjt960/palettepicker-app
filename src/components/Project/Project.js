@@ -5,7 +5,11 @@ import Palette from "../Palette/Palette";
 const Project = props => {
   const palettes = props.palettes.map(palette => {
     return (
-      <Palette title={palette.paletteTitle} colors={palette.paletteColors} />
+      <Palette
+        title={palette.paletteTitle}
+        colors={palette.paletteColors}
+        key={palette.paletteId}
+      />
     );
   });
   return (
@@ -15,9 +19,12 @@ const Project = props => {
       </div>
       <div className="dotted-line" />
       <div className="delete-wrapper">
-        <div className="project-delete">
+        <button
+          onClick={() => console.log("Delete this Project")}
+          className="project-delete"
+        >
           <h2>X</h2>
-        </div>
+        </button>
       </div>
       {palettes}
     </section>
