@@ -7,7 +7,8 @@ import "./PalettePicker.css";
 export default class PalettePicker extends Component {
   state = {
     hue: null,
-    colorScheme: null,
+    hueLocked: false,
+    colorScheme: "triade",
     variation: "pastel",
     colors: [],
     editable: false
@@ -27,6 +28,14 @@ export default class PalettePicker extends Component {
     this.setState({ hue: value });
   };
 
+  hueLock = () => {
+    this.setState({ hueLocked: true });
+  };
+
+  hueUnlock = () => {
+    this.setState({ hueLocked: false });
+  };
+
   updateColorScheme = e => {
     const { value } = e.target;
     console.log(value);
@@ -38,28 +47,48 @@ export default class PalettePicker extends Component {
     this.setState({ variation: value });
   };
 
-  updateColors = e => {
+  updateColors = (e, previousColors) => {
     e.preventDefault();
-    this.generateColors();
+    this.generateColors(previousColors);
   };
 
   generateRandomHue = () => {
     return Math.floor(Math.random() * (360 + 1));
   };
 
-  generateColors = () => {
+  handleLockStatus = (targetColor, lockStatus) => {
+    const colorIndex = this.state.colors.findIndex(color => {
+      return targetColor === color;
+    });
+    const colors = this.state.colors.slice();
+    colors[colorIndex].locked = lockStatus;
+    this.setState({ colors });
+  };
+
+  generateColors = async (previousColors = []) => {
     // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
-    const { hue, colorScheme, variation } = this.state;
+    const { hue, hueLocked, colorScheme, variation, colors } = this.state;
     const { pColorScheme = "triade" } = this.props;
+    let generatedHue;
+    if (!hueLocked) {
+      generatedHue = this.generateRandomHue();
+    }
     const scheme = new ColorScheme();
     scheme
-      .from_hue(hue || this.generateRandomHue())
+      .from_hue(generatedHue || hue)
       .scheme(colorScheme || pColorScheme)
       .variation(variation);
-    const colors = scheme.colors().map(color => {
-      return "#" + color;
+    const generatedColors = scheme.colors().map(color => {
+      return { hex: "#" + color, locked: false };
     });
-    this.setState({ colors });
+    if (previousColors.length !== generatedColors.length) {
+      this.setState({ colors: generatedColors, hue: generatedHue || hue });
+    } else {
+      colors.forEach((color, i) => {
+        if (color.locked === true) generatedColors.splice(i, 1, color);
+      });
+      this.setState({ colors: generatedColors, hue: generatedHue || hue });
+    }
   };
 
   render() {
@@ -72,23 +101,48 @@ export default class PalettePicker extends Component {
           color={color}
           vRotate={this.props.vRotate}
           number={i}
+          handleLockStatus={this.handleLockStatus}
           // key={uuid}
         />
       );
     });
 
     const PhraseBlock = (
-      <div
+      <section
         className={`${
           !this.state.editable
             ? "PhraseBlock pb-active"
             : "PhraseBlock pd-inactive"
         }`}
       >
-        <div className="phrase-background">
+        <header className="phrase-background">
           <h2>Choose a color!</h2>
-        </div>
-      </div>
+        </header>
+        <section className="phrase-block-content">
+          <button
+            className={
+              this.state.hueLocked
+                ? "phrase-button locked-btn"
+                : "phrase-button"
+            }
+            onClick={e => this.updateColors(e, this.state.colors)}
+          >
+            Refresh Colors
+          </button>
+          <div className="current-format">
+            <div className="format-hue">
+              <p>{this.state.hue || this.props.hue}</p>
+              {this.state.hueLocked ? (
+                <i className="fas fa-sm fa-lock" onClick={this.hueUnlock} />
+              ) : (
+                <i className="fas fa-sm fa-unlock-alt" onClick={this.hueLock} />
+              )}
+            </div>
+            <p>{this.state.colorScheme || this.props.pColorScheme}</p>
+            <p>{this.state.variation}</p>
+          </div>
+        </section>
+      </section>
     );
 
     return (
@@ -98,18 +152,29 @@ export default class PalettePicker extends Component {
           className="edit-block"
           style={this.state.editable ? editBarActive : null}
         >
-          <form className="edits-form" onSubmit={e => this.updateColors(e)}>
-            <div>
+          <form
+            className="edits-form"
+            onSubmit={e => this.updateColors(e, this.state.colors)}
+          >
+            <div className="hue-selection-container">
               <h4>Hue Selection:</h4>
-              <label htmlFor="hue-selection">
-                <input
-                  type="text"
-                  placeholder="default: random"
-                  autoComplete="off"
-                  name="hue-selection"
-                  onChange={this.updateHue}
-                />
-              </label>
+              <div className="hue-selection-inputs">
+                <label htmlFor="hue-selection">
+                  <input
+                    type="text"
+                    placeholder="default: random"
+                    autoComplete="off"
+                    name="hue-selection"
+                    value={this.state.hue}
+                    onChange={this.updateHue}
+                  />
+                </label>
+                {this.state.hueLocked ? (
+                  <button onClick={this.hueUnlock}>Unlock</button>
+                ) : (
+                  <button onClick={this.hueLock}>Lock</button>
+                )}
+              </div>
             </div>
             <section className="radio-styles">
               <h4>Color schemes:</h4>
@@ -226,7 +291,7 @@ export default class PalettePicker extends Component {
         <div className="colors-section">{colors}</div>
         <div className="button-bar">
           <button className="primary-btn" onClick={this.toggleEditable}>
-            Edit Colors
+            Edit
           </button>
           <button className="primary-btn">Save</button>
         </div>
