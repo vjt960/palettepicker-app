@@ -119,11 +119,25 @@ export default class PalettePicker extends Component {
           <h2>Choose a color!</h2>
         </header>
         <section className="phrase-block-content">
-          <button onClick={e => this.updateColors(e, this.state.colors)}>
+          <button
+            className={
+              this.state.hueLocked
+                ? "phrase-button locked-btn"
+                : "phrase-button"
+            }
+            onClick={e => this.updateColors(e, this.state.colors)}
+          >
             Refresh Colors
           </button>
           <div className="current-format">
-            <p>{this.state.hue || this.props.hue}</p>
+            <div className="format-hue">
+              <p>{this.state.hue || this.props.hue}</p>
+              {this.state.hueLocked ? (
+                <i className="fas fa-sm fa-lock" onClick={this.hueUnlock} />
+              ) : (
+                <i className="fas fa-sm fa-unlock-alt" onClick={this.hueLock} />
+              )}
+            </div>
             <p>{this.state.colorScheme || this.props.pColorScheme}</p>
             <p>{this.state.variation}</p>
           </div>
