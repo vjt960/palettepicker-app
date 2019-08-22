@@ -68,11 +68,8 @@ export default class PalettePicker extends Component {
     const generatedColors = scheme.colors().map(color => {
       return { hex: "#" + color, locked: false };
     });
-    if (previousColors > generatedColors) {
-      this.state.colors.forEach(color => {
-        if (color.locked === true) generatedColors.push(color);
-        return this.setState({ colors: generatedColors });
-      });
+    if (previousColors.length !== generatedColors.length) {
+      this.setState({ colors: generatedColors });
     } else {
       this.state.colors.forEach((color, i) => {
         if (color.locked === true) generatedColors.splice(i, 1, color);
