@@ -1,5 +1,5 @@
 .App {
-  /* border: 1px solid red; */
+  position: relative;
   min-height: 100vh;
   max-width: 100vw;
   font-family: "Comfortaa", cursive;
