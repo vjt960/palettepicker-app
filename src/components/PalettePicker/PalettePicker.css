@@ -134,15 +134,44 @@ label {
 .phrase-background > h2 {
   margin: 0;
   color: white;
-  padding-top: 0.2rem;
+  padding: 0.3rem;
 }
 
-.phrase-background > button {
+.phrase-block-content {
+  width: 25%;
+  margin: 0.2rem auto;
+}
+
+.phrase-block-content > button {
   border: 1px solid white;
+  cursor: pointer;
   border-radius: 4px;
-  background: transparent;
+  width: 100%;
+  background: coral;
   color: white;
   font-size: 14px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.current-format {
+  display: flex;
+  font-family: "Comfortaa", cursive;
+  width: 80%;
+  margin: 0 auto;
+  /* margin-top: 0.3rem; */
+  justify-content: space-around;
+  padding: 0.2rem;
+  background-color: rgb(40, 48, 56);
+}
+
+.current-format > p {
+  color: white;
+  margin: 0;
+  font-size: 12px;
+  min-width: 33%;
 }
 
 .pb-active {
