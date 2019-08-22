@@ -2,8 +2,15 @@ import React from "react";
 import "./Palette.css";
 
 const Palette = props => {
-  const colors = props.colors.map(color => {
-    return <div className="color" style={{ backgroundColor: color }} />;
+  const colors = props.colors.map((color, i) => {
+    return (
+      <div
+        className="color"
+        key={i}
+        style={{ backgroundColor: color }}
+        onClick={() => console.log("open box")}
+      />
+    );
   });
   return (
     <article className="Palette">
