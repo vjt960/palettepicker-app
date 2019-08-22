@@ -7,7 +7,8 @@ import "./PalettePicker.css";
 export default class PalettePicker extends Component {
   state = {
     hue: null,
-    colorScheme: null,
+    hueLocked: false,
+    colorScheme: "triade",
     variation: "pastel",
     colors: [],
     editable: false
@@ -25,6 +26,11 @@ export default class PalettePicker extends Component {
   updateHue = e => {
     const { value } = e.target;
     this.setState({ hue: value });
+  };
+
+  toggleHueLock = () => {
+    const toggle = this.state.hueLocked;
+    this.setState({ hueLocked: !toggle });
   };
 
   updateColorScheme = e => {
@@ -56,25 +62,30 @@ export default class PalettePicker extends Component {
     this.setState({ colors });
   };
 
-  generateColors = (previousColors = []) => {
+  generateColors = async (previousColors = []) => {
     // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
-    const { hue, colorScheme, variation, colors, lockedColors } = this.state;
+    const { hue, hueLocked, colorScheme, variation, colors } = this.state;
     const { pColorScheme = "triade" } = this.props;
+    let generatedHue;
+    if (!hueLocked) {
+      generatedHue = this.generateRandomHue();
+    }
+    console.log(hue);
     const scheme = new ColorScheme();
     scheme
-      .from_hue(hue || this.generateRandomHue())
+      .from_hue(hue || generatedHue)
       .scheme(colorScheme || pColorScheme)
       .variation(variation);
     const generatedColors = scheme.colors().map(color => {
       return { hex: "#" + color, locked: false };
     });
     if (previousColors.length !== generatedColors.length) {
-      this.setState({ colors: generatedColors });
+      this.setState({ colors: generatedColors, hue: generatedHue || hue });
     } else {
-      this.state.colors.forEach((color, i) => {
+      colors.forEach((color, i) => {
         if (color.locked === true) generatedColors.splice(i, 1, color);
       });
-      this.setState({ colors: generatedColors });
+      this.setState({ colors: generatedColors, hue: generatedHue || hue });
     }
   };
 
@@ -104,6 +115,14 @@ export default class PalettePicker extends Component {
       >
         <div className="phrase-background">
           <h2>Choose a color!</h2>
+          <div className="current-format">
+            <p>{this.state.hue || this.props.hue}</p>
+            <p>{this.state.colorScheme || this.props.pColorScheme}</p>
+            <p>{this.state.variation}</p>
+          </div>
+          <button onClick={e => this.updateColors(e, this.state.colors)}>
+            Refresh Colors
+          </button>
         </div>
       </div>
     );
@@ -130,6 +149,7 @@ export default class PalettePicker extends Component {
                   onChange={this.updateHue}
                 />
               </label>
+              <button onClick={this.toggleHueLock}>Lock</button>
             </div>
             <section className="radio-styles">
               <h4>Color schemes:</h4>

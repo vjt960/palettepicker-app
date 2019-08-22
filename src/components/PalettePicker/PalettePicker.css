@@ -127,11 +127,22 @@ label {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.75);
 }
 
-.phrase-background > h2 {
+.phrase-background > * {
   transform: skew(-35deg);
+}
+
+.phrase-background > h2 {
   margin: 0;
   color: white;
-  padding: 0.5rem;
+  padding-top: 0.2rem;
+}
+
+.phrase-background > button {
+  border: 1px solid white;
+  border-radius: 4px;
+  background: transparent;
+  color: white;
+  font-size: 14px;
 }
 
 .pb-active {
