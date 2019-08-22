@@ -1,22 +1,14 @@
 import React from "react";
 import "./App.css";
-import ProjectsContainer from "./components/ProjectsContainer/ProjectsContainer";
-import PalettePicker from "./components/PalettePicker/PalettePicker";
+import LandingPage from "./components/LandingPage/LandingPage";
+import NavBar from "./components/NavBar/NavBar";
+import { Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="NavBar">
-        <h2>PalettePicker</h2>
-        <form className="navbar-form">
-          <button>Login</button>
-          <button>Register</button>
-        </form>
-      </header>
-      <main className="MainPage">
-        <PalettePicker />
-        <ProjectsContainer />
-      </main>
+      <Route path="/" component={NavBar} />
+      <Route exact path="/" component={LandingPage} />
     </div>
   );
 }
