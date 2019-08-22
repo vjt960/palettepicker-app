@@ -7,6 +7,7 @@ const Palette = props => {
   });
   return (
     <article className="Palette">
+      <button className="palette-delete">X</button>
       <h4 className="palette-title">{props.title}</h4>
       {colors}
     </article>
