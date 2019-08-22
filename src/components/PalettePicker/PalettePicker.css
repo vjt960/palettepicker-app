@@ -140,26 +140,33 @@ label {
 .phrase-block-content {
   width: 25%;
   margin: 0.2rem auto;
+  min-width: 160px;
 }
 
-.phrase-block-content > button {
+.phrase-button {
   border: 1px solid white;
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
-  background: coral;
+  background-color: coral;
   color: white;
   font-size: 14px;
 }
 
+.locked-btn {
+  cursor: auto !important;
+  background-color: lightgray;
+}
+
 button:focus {
   outline: none;
+  cursor: pointer;
 }
 
 .current-format {
   display: flex;
   font-family: "Comfortaa", cursive;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   /* margin-top: 0.3rem; */
   justify-content: space-around;
@@ -167,11 +174,32 @@ button:focus {
   background-color: rgb(40, 48, 56);
 }
 
-.current-format > p {
+.current-format > * {
   color: white;
   margin: 0;
   font-size: 12px;
   min-width: 33%;
+  /* border: 1px solid red; */
+}
+
+.format-hue {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.format-hue > p {
+  margin: 1px 0 0 0;
+  min-width: 25px;
+  margin-left: 15%;
+}
+
+.format-hue > i {
+  margin-right: 15%;
+}
+
+.format-hue > i:hover {
+  cursor: pointer;
 }
 
 .pb-active {
