@@ -156,23 +156,25 @@ export default class PalettePicker extends Component {
             className="edits-form"
             onSubmit={e => this.updateColors(e, this.state.colors)}
           >
-            <div>
+            <div className="hue-selection-container">
               <h4>Hue Selection:</h4>
-              <label htmlFor="hue-selection">
-                <input
-                  type="text"
-                  placeholder="default: random"
-                  autoComplete="off"
-                  name="hue-selection"
-                  value={this.state.hue}
-                  onChange={this.updateHue}
-                />
-              </label>
-              {this.state.hueLocked ? (
-                <button onClick={this.hueUnlock}>Unlock</button>
-              ) : (
-                <button onClick={this.hueLock}>Lock</button>
-              )}
+              <div className="hue-selection-inputs">
+                <label htmlFor="hue-selection">
+                  <input
+                    type="text"
+                    placeholder="default: random"
+                    autoComplete="off"
+                    name="hue-selection"
+                    value={this.state.hue}
+                    onChange={this.updateHue}
+                  />
+                </label>
+                {this.state.hueLocked ? (
+                  <button onClick={this.hueUnlock}>Unlock</button>
+                ) : (
+                  <button onClick={this.hueLock}>Lock</button>
+                )}
+              </div>
             </div>
             <section className="radio-styles">
               <h4>Color schemes:</h4>
@@ -289,7 +291,7 @@ export default class PalettePicker extends Component {
         <div className="colors-section">{colors}</div>
         <div className="button-bar">
           <button className="primary-btn" onClick={this.toggleEditable}>
-            Edit Colors
+            Edit
           </button>
           <button className="primary-btn">Save</button>
         </div>

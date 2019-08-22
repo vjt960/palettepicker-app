@@ -202,6 +202,26 @@ button:focus {
   cursor: pointer;
 }
 
+.hue-selection-container {
+  /* border: 1px solid red; */
+}
+
+.hue-selection-inputs {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+
+.hue-selection-inputs > button {
+  /* border: 1px solid red; */
+  height: 30px;
+  margin: 0.2rem 0;
+  background-color: coral;
+  color: white;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
 .pb-active {
   transform: translateY(0%);
 }
