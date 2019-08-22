@@ -19,9 +19,12 @@ const Project = props => {
       </div>
       <div className="dotted-line" />
       <div className="delete-wrapper">
-        <div className="project-delete">
+        <button
+          onClick={() => console.log("Delete this Project")}
+          className="project-delete"
+        >
           <h2>X</h2>
-        </div>
+        </button>
       </div>
       {palettes}
     </section>
