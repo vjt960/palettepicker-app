@@ -13,12 +13,18 @@ export default class ProjectsContainer extends Component {
         palettes: [
           {
             paletteTitle: "Ok here is title",
-            paletteColors: ["#45CD12", "#DFD442", "#4E3211"]
+            paletteColors: ["#45CD12", "#DFD442", "#4E3211"],
+            paletteId: "asd3a1DD3sd"
           },
-          { paletteTitle: "Idea - 2 Colors", paletteColors: ["#123456"] },
+          {
+            paletteTitle: "Idea - 2 Colors",
+            paletteColors: ["#123456"],
+            paletteId: "eeEE123D3sd"
+          },
           {
             paletteTitle: "Serene",
-            paletteColors: ["#FEDCBA", "#45CD12", "#3A3A3A", "#123123"]
+            paletteColors: ["#FEDCBA", "#45CD12", "#3A3A3A", "#123123"],
+            paletteId: "f321DFDff3sd"
           },
           {
             paletteTitle: "-- Send to Steve",
@@ -28,7 +34,24 @@ export default class ProjectsContainer extends Component {
               "#ABCABC",
               "#123123",
               "#3A3A3A"
-            ]
+            ],
+            paletteId: "asd3a1DD3sd"
+          },
+          {
+            paletteTitle: "Iteration 4",
+            paletteColors: [
+              "#FEDCBA",
+              "#FFFFDD",
+              "#45CD12",
+              "#AABBE1",
+              "#3A3A3A"
+            ],
+            paletteId: "13AS3U98MN"
+          },
+          {
+            paletteTitle: "- Two Potential Options -",
+            paletteColors: ["#AFFFDD", "#1A3A3A"],
+            paletteId: "13AS3U98MN"
           }
         ]
       },
@@ -39,12 +62,18 @@ export default class ProjectsContainer extends Component {
         palettes: [
           {
             paletteTitle: "For Mary",
-            paletteColors: ["#568111", "#512612", "#EA31EA"]
+            paletteColors: ["#568111", "#512612", "#EA31EA"],
+            paletteId: "oi112uTR3y"
           },
-          { paletteTitle: "Idea - ???", paletteColors: ["#123456", "#99EE32"] },
+          {
+            paletteTitle: "Idea - ???",
+            paletteColors: ["#123456", "#99EE32"],
+            paletteId: "833AS3U99M"
+          },
           {
             paletteTitle: "Iteration 2",
-            paletteColors: ["#FEDCBA", "#FFFFDD", "#AABBE1", "#3A3A3A"]
+            paletteColors: ["#FEDCBA", "#FFFFDD", "#AABBE1", "#3A3A3A"],
+            paletteId: "13AS3U98MN"
           }
         ]
       }
