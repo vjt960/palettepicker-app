@@ -146,10 +146,15 @@ export default class PalettePicker extends Component {
                   placeholder="default: random"
                   autoComplete="off"
                   name="hue-selection"
+                  value={this.state.hue}
                   onChange={this.updateHue}
                 />
               </label>
-              <button onClick={this.toggleHueLock}>Lock</button>
+              {this.state.hueLocked ? (
+                <button onClick={this.toggleHueLock}>Unlock</button>
+              ) : (
+                <button onClick={this.toggleHueLock}>Lock</button>
+              )}
             </div>
             <section className="radio-styles">
               <h4>Color schemes:</h4>
