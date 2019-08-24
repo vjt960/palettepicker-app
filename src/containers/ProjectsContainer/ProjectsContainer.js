@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Project from "../Project/Project";
+import Project from "../../components/Project/Project";
 import * as actions from "../../_redux/actions/index";
 import { connect } from "react-redux";
 import "./ProjectsContainer.css";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ColorScheme from "color-scheme";
-import ColorBar from "../ColorBar/ColorBar";
+import ColorBar from "../../components/ColorBar/ColorBar";
 import "./PalettePicker.css";
 
 export default class PalettePicker extends Component {
