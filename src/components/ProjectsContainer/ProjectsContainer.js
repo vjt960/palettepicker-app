@@ -7,7 +7,6 @@ import "./ProjectsContainer.css";
 class ProjectsContainer extends Component {
   state = {
     user: { userId: "123ddEad2199E", username: "Elliot" }
-    // projects:
   };
 
   componentDidMount() {
@@ -122,7 +121,7 @@ class ProjectsContainer extends Component {
 }
 
 const mapStateToProps = store => ({
-  userProjects: store.addUserProjects
+  userProjects: store.userProjects
 });
 
 const mapDispatchToProps = dispatch => ({
