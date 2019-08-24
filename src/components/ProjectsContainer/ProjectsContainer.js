@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import Project from "../Project/Project";
+import * as actions from "../../_redux/actions/index";
+import { connect } from "react-redux";
 import "./ProjectsContainer.css";
 
-export default class ProjectsContainer extends Component {
+class ProjectsContainer extends Component {
   state = {
-    user: { userId: "123ddEad2199E", username: "Elliot" },
-    projects: [
+    user: { userId: "123ddEad2199E", username: "Elliot" }
+    // projects:
+  };
+
+  componentDidMount() {
+    this.props.addUserProjects([
       {
         projectTitle: "--Send to Steve",
         projectId: "asd3213ey1u",
@@ -77,10 +83,11 @@ export default class ProjectsContainer extends Component {
           }
         ]
       }
-    ]
-  };
+    ]);
+  }
+
   render() {
-    const projects = this.state.projects.map(project => {
+    const projects = this.props.userProjects.map(project => {
       return (
         <Project
           title={project.projectTitle}
@@ -89,7 +96,7 @@ export default class ProjectsContainer extends Component {
         />
       );
     });
-    const textMessage = this.state.projects.length ? (
+    const textMessage = this.props.userProjects.length ? (
       <p>Here are your projects!</p>
     ) : (
       <p>This area is where your projects will be saved!</p>
@@ -101,7 +108,7 @@ export default class ProjectsContainer extends Component {
           <React.Fragment>
             <header
               className={`projects-container-header ${
-                this.state.projects.length ? null : "header-hidden"
+                this.props.userProjects.length ? null : "header-hidden"
               }`}
             >
               {textMessage}
@@ -113,3 +120,16 @@ export default class ProjectsContainer extends Component {
     );
   }
 }
+
+const mapStateToProps = store => ({
+  userProjects: store.addUserProjects
+});
+
+const mapDispatchToProps = dispatch => ({
+  addUserProjects: projects => dispatch(actions.addUserProjects(projects))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectsContainer);

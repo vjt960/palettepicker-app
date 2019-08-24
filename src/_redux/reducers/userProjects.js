@@ -1,7 +1,7 @@
-export const userProjects = (state = [], action) => {
+export const addUserProjects = (state = [], action) => {
   switch (action.type) {
-    case "ADD_PROJECT":
-      return state;
+    case "ADD_USER_PROJECTS":
+      return action.project;
     default:
       return state;
   }
