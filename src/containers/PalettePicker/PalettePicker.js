@@ -22,8 +22,12 @@ class PalettePicker extends Component {
     this.generateColors();
   }
 
+  componentDidUpdate() {
+    this.props.updateCurrentPalette(this.state.colors);
+  }
+
   saveDialogOpen = () => {
-    this.props.history.push("edit-palette");
+    this.props.history.push("save-palette");
   };
 
   toggleEditable = () => {
@@ -154,7 +158,9 @@ class PalettePicker extends Component {
 const mapDispatchToProps = dispatch => ({
   createNewProject: project => dispatch(actions.createNewProject(project)),
   updateExistingProject: project =>
-    dispatch(actions.updateExistingProject(project))
+    dispatch(actions.updateExistingProject(project)),
+  updateCurrentPalette: palette =>
+    dispatch(actions.updateCurrentPalette(palette))
 });
 
 export default connect(
