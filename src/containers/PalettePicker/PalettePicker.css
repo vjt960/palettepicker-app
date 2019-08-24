@@ -37,11 +37,6 @@
   border-radius: 5px;
 }
 
-.locked-btn {
-  cursor: auto !important;
-  background-color: lightgray;
-}
-
 button:focus {
   outline: none;
   cursor: pointer;
