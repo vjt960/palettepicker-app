@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import ColorScheme from "color-scheme";
 import ColorBar from "../../components/ColorBar/ColorBar";
+import * as actions from "../../_redux/actions";
+import { connect } from "react-redux";
 import "./PalettePicker.css";
+import EditBarFull from "../../components/EditBarFull/EditBarFull";
+import EditBarPartial from "../../components/EditBarPartial/EditBarPartial";
 
-export default class PalettePicker extends Component {
+class PalettePicker extends Component {
   state = {
     hue: "",
     hueLocked: false,
@@ -91,9 +95,6 @@ export default class PalettePicker extends Component {
   };
 
   render() {
-    const editBarActive = {
-      transform: "translateY(0%)"
-    };
     const colors = this.state.colors.map((color, i) => {
       return (
         <ColorBar
@@ -106,187 +107,30 @@ export default class PalettePicker extends Component {
       );
     });
 
-    const PhraseBlock = (
-      <section
-        className={`${
-          !this.state.editable
-            ? "PhraseBlock pb-active"
-            : "PhraseBlock pd-inactive"
-        }`}
-      >
-        <header className="phrase-background">
-          <h2>Choose a color!</h2>
-        </header>
-        <section className="phrase-block-content">
-          <button
-            className={
-              this.state.hueLocked
-                ? "phrase-button locked-btn"
-                : "phrase-button"
-            }
-            onClick={e => this.updateColors(e, this.state.colors)}
-          >
-            Refresh Colors
-          </button>
-          <div className="current-format">
-            <div className="format-hue">
-              <p>{this.state.hue || this.props.hue}</p>
-              {this.state.hueLocked ? (
-                <i className="fas fa-sm fa-lock" onClick={this.hueUnlock} />
-              ) : (
-                <i className="fas fa-sm fa-unlock-alt" onClick={this.hueLock} />
-              )}
-            </div>
-            <p>{this.state.colorScheme || this.props.pColorScheme}</p>
-            <p>{this.state.variation}</p>
-          </div>
-        </section>
-      </section>
-    );
-
     return (
       <section className="PalettePicker">
-        {PhraseBlock}
-        <div
-          className="edit-block"
-          style={this.state.editable ? editBarActive : null}
-        >
-          <form
-            className="edits-form"
-            onSubmit={e => this.updateColors(e, this.state.colors)}
-          >
-            <div className="hue-selection-container">
-              <h4>Hue Selection:</h4>
-              <div className="hue-selection-inputs">
-                <label htmlFor="hue-selection">
-                  <input
-                    type="text"
-                    placeholder="default: random"
-                    autoComplete="off"
-                    name="hue-selection"
-                    value={this.state.hue}
-                    onChange={this.updateHue}
-                  />
-                </label>
-                {this.state.hueLocked ? (
-                  <button onClick={this.hueUnlock}>Unlock</button>
-                ) : (
-                  <button onClick={this.hueLock}>Lock</button>
-                )}
-              </div>
-            </div>
-            <section className="radio-styles">
-              <h4>Color schemes:</h4>
-              <label htmlFor="mono">
-                mono
-                <input
-                  type="radio"
-                  name="colorScheme-selection"
-                  value="mono"
-                  onClick={e => this.updateColorScheme(e)}
-                />
-              </label>
-              <label htmlFor="contrast">
-                contrast
-                <input
-                  type="radio"
-                  name="colorScheme-selection"
-                  value="contrast"
-                  onClick={e => this.updateColorScheme(e)}
-                />
-              </label>
-              <label htmlFor="triade">
-                triade
-                <input
-                  type="radio"
-                  name="colorScheme-selection"
-                  value="triade"
-                  defaultChecked
-                  onClick={e => this.updateColorScheme(e)}
-                />
-              </label>
-              <label htmlFor="tetrade">
-                tetrade
-                <input
-                  type="radio"
-                  name="colorScheme-selection"
-                  value="tetrade"
-                  onClick={e => this.updateColorScheme(e)}
-                />
-              </label>
-              <label htmlFor="analogic">
-                analogic
-                <input
-                  type="radio"
-                  name="colorScheme-selection"
-                  value="analogic"
-                  onClick={e => this.updateColorScheme(e)}
-                />
-              </label>
-            </section>
-            <section className="radio-styles">
-              <h4>Color Variations:</h4>
-              <label htmlFor="default">
-                default
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="default"
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-              <label htmlFor="pastel">
-                pastel
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="pastel"
-                  defaultChecked
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-              <label htmlFor="soft">
-                soft
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="soft"
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-              <label htmlFor="light">
-                light
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="light"
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-              <label htmlFor="hard">
-                hard
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="hard"
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-              <label htmlFor="pale">
-                pale
-                <input
-                  type="radio"
-                  name="variation-selection"
-                  value="pale"
-                  onClick={e => this.updateVariation(e)}
-                />
-              </label>
-            </section>
-            <button className="update-btn">
-              <p>Update</p>
-            </button>
-          </form>
-        </div>
+        <EditBarPartial
+          editable={this.state.editable}
+          hue={this.state.hue}
+          hueLocked={this.state.hueLocked}
+          colorScheme={this.state.colorScheme}
+          variation={this.state.variation}
+          colors={this.state.colors}
+          updateColors={this.updateColors}
+          hueLock={this.hueLock}
+          hueUnlock={this.hueUnlock}
+        />
+        <EditBarFull
+          editable={this.state.editable}
+          hue={this.state.hue}
+          hueLocked={this.state.hueLocked}
+          colors={this.state.colors}
+          updateColors={this.updateColors}
+          hueLock={this.hueLock}
+          hueUnlock={this.hueUnlock}
+          updateVariation={this.updateVariation}
+          updateColorScheme={this.updateColorScheme}
+        />
         <div className="colors-section">{colors}</div>
         <div className="button-bar">
           <button className="primary-btn" onClick={this.toggleEditable}>
@@ -298,3 +142,14 @@ export default class PalettePicker extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  createNewProject: project => dispatch(actions.createNewProject(project)),
+  updateExistingProject: project =>
+    dispatch(actions.updateExistingProject(project))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(PalettePicker);
