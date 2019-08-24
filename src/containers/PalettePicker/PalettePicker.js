@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import ColorScheme from "color-scheme";
 import ColorBar from "../../components/ColorBar/ColorBar";
+import EditBarFull from "../../components/EditBarFull/EditBarFull";
+import EditBarPartial from "../../components/EditBarPartial/EditBarPartial";
+import { withRouter } from "react-router-dom";
 import * as actions from "../../_redux/actions";
 import { connect } from "react-redux";
 import "./PalettePicker.css";
-import EditBarFull from "../../components/EditBarFull/EditBarFull";
-import EditBarPartial from "../../components/EditBarPartial/EditBarPartial";
 
 class PalettePicker extends Component {
   state = {
@@ -20,6 +21,10 @@ class PalettePicker extends Component {
   componentDidMount() {
     this.generateColors();
   }
+
+  saveDialogOpen = () => {
+    this.props.history.push("edit-palette");
+  };
 
   toggleEditable = () => {
     const toggle = this.state.editable;
@@ -126,6 +131,7 @@ class PalettePicker extends Component {
           hueLocked={this.state.hueLocked}
           colors={this.state.colors}
           updateColors={this.updateColors}
+          updateHue={this.updateHue}
           hueLock={this.hueLock}
           hueUnlock={this.hueUnlock}
           updateVariation={this.updateVariation}
@@ -136,7 +142,9 @@ class PalettePicker extends Component {
           <button className="primary-btn" onClick={this.toggleEditable}>
             Edit
           </button>
-          <button className="primary-btn">Save</button>
+          <button className="primary-btn" onClick={this.saveDialogOpen}>
+            Save
+          </button>
         </div>
       </section>
     );
@@ -152,4 +160,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(PalettePicker);
+)(withRouter(PalettePicker));
