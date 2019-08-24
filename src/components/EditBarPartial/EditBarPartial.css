@@ -87,3 +87,8 @@
 .pb-inactive {
   transform: translateY(-100%);
 }
+
+.locked-btn {
+  cursor: auto !important;
+  background-color: lightgray;
+}
