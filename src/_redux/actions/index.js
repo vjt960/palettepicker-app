@@ -1,6 +1,6 @@
-export const addProject = project => {
+export const addUserProjects = project => {
   return {
-    type: "ADD_PROJECT",
+    type: "ADD_USER_PROJECTS",
     project
   };
 };
