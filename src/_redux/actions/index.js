@@ -25,3 +25,10 @@ export const updateCurrentPalette = palette => {
     palette
   };
 };
+
+export const removeUserProject = id => {
+  return {
+    type: "REMOVE_USER_PROJECT",
+    id
+  };
+};
