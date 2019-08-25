@@ -5,17 +5,16 @@
   border-left: 1px solid coral;
   color: #ffffff;
   transition: 0.5s height ease-in;
-}
+  .projects-container-header > p {
+    transition: 1s padding-top ease-in;
+    padding-top: 2.5vh;
+  }
 
-.projects-container-header > p {
-  transition: 1s padding-top ease-in;
-  padding-top: 2.5vh;
-}
+  .header-hidden {
+    height: 8vh;
+  }
 
-.header-hidden {
-  height: 8vh;
-}
-
-.header-hidden > p {
-  padding-top: 2vh;
+  .header-hidden > p {
+    padding-top: 2vh;
+  }
 }
