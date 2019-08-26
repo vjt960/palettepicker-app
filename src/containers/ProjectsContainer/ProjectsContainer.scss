@@ -1,0 +1,14 @@
+.ProjectsContainer {
+  min-height: 500px;
+  transition: 1s min-height ease-in-out;
+  .projects-container-header {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
+  }
+}
+
+.collapse {
+  min-height: 200px;
+}

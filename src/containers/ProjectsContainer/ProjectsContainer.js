@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Project from "../../components/Project/Project";
+import { TransitionGroup } from "react-transition-group";
 import * as actions from "../../_redux/actions/index";
 import { connect } from "react-redux";
-import "./ProjectsContainer.css";
+import "./ProjectsContainer.scss";
 
 class ProjectsContainer extends Component {
   state = {
@@ -85,37 +86,38 @@ class ProjectsContainer extends Component {
     ]);
   }
 
+  removeProject = id => {
+    this.props.removeUserProject(id);
+  };
+
   render() {
-    const projects = this.props.userProjects.map(project => {
-      return (
-        <Project
-          title={project.projectTitle}
-          palettes={project.palettes}
-          key={project.projectId}
-        />
-      );
-    });
+    const projects = this.props.userProjects.map((project, index) => (
+      <Project
+        title={project.projectTitle}
+        project={project}
+        index={index}
+        palettes={project.palettes}
+        key={project.projectId}
+        id={project.projectId}
+        removeProject={this.removeProject}
+      />
+    ));
     const textMessage = this.props.userProjects.length ? (
       <p>Here are your projects!</p>
     ) : (
       <p>This area is where your projects will be saved!</p>
     );
-
     return (
-      <div>
-        <section className="ProjectsContainer">
-          <React.Fragment>
-            <header
-              className={`projects-container-header ${
-                this.props.userProjects.length ? null : "header-hidden"
-              }`}
-            >
-              {textMessage}
-            </header>
-            {projects}
-          </React.Fragment>
-        </section>
-      </div>
+      <section
+        className={
+          this.props.userProjects.length
+            ? "ProjectsContainer"
+            : "ProjectsContainer collapse"
+        }
+      >
+        <header className="projects-container-header">{textMessage}</header>
+        <TransitionGroup>{projects}</TransitionGroup>
+      </section>
     );
   }
 }
@@ -125,7 +127,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addUserProjects: projects => dispatch(actions.addUserProjects(projects))
+  addUserProjects: projects => dispatch(actions.addUserProjects(projects)),
+  removeUserProject: id => dispatch(actions.removeUserProject(id))
 });
 
 export default connect(
