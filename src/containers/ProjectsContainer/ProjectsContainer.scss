@@ -1,20 +1,14 @@
-.projects-container-header {
-  display: flex;
-  justify-content: center;
-  border-right: 1px solid coral;
-  border-left: 1px solid coral;
-  color: #ffffff;
-  transition: 0.5s height ease-in;
-  .projects-container-header > p {
-    transition: 1s padding-top ease-in;
-    padding-top: 2.5vh;
+.ProjectsContainer {
+  min-height: 500px;
+  transition: 1s min-height ease-in-out;
+  .projects-container-header {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
   }
+}
 
-  .header-hidden {
-    height: 8vh;
-  }
-
-  .header-hidden > p {
-    padding-top: 2vh;
-  }
+.collapse {
+  min-height: 200px;
 }
