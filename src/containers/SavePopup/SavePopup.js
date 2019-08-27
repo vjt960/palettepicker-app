@@ -2,43 +2,56 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
 import "./SavePopup.scss";
+import ColorEditor from "../../components/ColorEditor/ColorEditor";
 
 function SavePopup(props) {
   const handleExit = () => {
     props.history.push("/");
   };
 
-  const removeColor = color => {
+  const handleColor = (color, format) => {
     const paletteCopy = props.currentPalette.slice();
     const colorIndex = props.currentPalette.findIndex(
       paletteColor => paletteColor.hex === color.hex
     );
-    paletteCopy[colorIndex].locked = false;
-    props.updateCurrentPalette(paletteCopy);
+    if (format === "remove") {
+      paletteCopy[colorIndex].locked = false;
+      props.updateCurrentPalette(paletteCopy);
+    } else if (format === "update") {
+      paletteCopy[colorIndex].hex = props.updateCurrentPalette(paletteCopy);
+    }
   };
 
   const colorOptions = props.currentPalette
     .filter(palette => palette.locked === true)
     .map(palette => {
       return (
-        <article className="palette-details" key={palette.hex}>
-          <section className="palette-inputs">
-            <div
-              className="palette-color"
-              style={{
-                backgroundColor: palette.hex
-              }}
-            ></div>
-            <input type="text" defaultValue={palette.hex} />
-          </section>
-          <button
-            className="remove-btn"
-            type="button"
-            onClick={() => removeColor(palette)}
-          >
-            Remove
-          </button>
-        </article>
+        <ColorEditor
+          palette={palette}
+          handleColor={handleColor}
+          key={palette.hex}
+        />
+        // <article className="palette-details" key={palette.hex}>
+        //   <section className="palette-inputs">
+        //     <div
+        //       className="palette-color"
+        //       style={{
+        //         backgroundColor: palette.hex
+        //       }}
+        //     ></div>
+        //     <input type="text" defaultValue={palette.hex} />
+        //   </section>
+        //   <button className="update-btn" type="button" onClick={() => handleColor(palette, "update")}>
+        //     Update Color
+        //   </button>
+        //   <button
+        //     className="remove-btn"
+        //     type="button"
+        //     onClick={() => handleColor(palette, "remove")}
+        //   >
+        //     Remove
+        //   </button>
+        // </article>
       );
     });
   return (
