@@ -1,62 +1,67 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
 import "./SavePopup.scss";
 import ColorEditor from "../../components/ColorEditor/ColorEditor";
 
-function SavePopup(props) {
-  const handleExit = () => {
-    props.history.push("/");
+class SavePopup extends Component {
+  state = {};
+
+  handleExit = () => {
+    this.props.history.push("/");
   };
 
-  const handleColor = (color, format, newColor) => {
-    const paletteCopy = props.currentPalette.slice();
-    const colorIndex = props.currentPalette.findIndex(
+  handleColor = (color, format, newColor) => {
+    const paletteCopy = this.props.currentPalette.slice();
+    const colorIndex = this.props.currentPalette.findIndex(
       paletteColor => paletteColor.hex === color.hex
     );
     if (format === "remove") {
       paletteCopy[colorIndex].locked = false;
-      props.updateCurrentPalette(paletteCopy);
+      this.props.updateCurrentPalette(paletteCopy);
     } else if (format === "update") {
       paletteCopy[colorIndex].hex = newColor;
-      props.updateCurrentPalette(paletteCopy);
+      this.props.updateCurrentPalette(paletteCopy);
     }
   };
 
-  const colorOptions = props.currentPalette
-    .filter(palette => palette.locked === true)
-    .map(palette => {
-      return (
-        <ColorEditor
-          palette={palette}
-          handleColor={handleColor}
-          key={palette.hex}
-        />
-      );
-    });
-
-  const handleSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
     console.log("Submitting");
   };
 
-  return (
-    <Fragment>
-      <div className="screen" />
-      <section className="SavePopup">
-        <button className="editor-exit" onClick={handleExit}>
-          X
-        </button>
-        <form className="editor-form" onSubmit={handleSubmit}>
-          <h3 className="editor-title">Title</h3>
-          <label htmlFor="">Label 1</label>
-          <input type="text" />
-          <section className="palettes-section">{colorOptions}</section>
-          <button className="submit-btn">Submit</button>
-        </form>
-      </section>
-    </Fragment>
-  );
+  render() {
+    const colorOptions = this.props.currentPalette
+      .filter(palette => palette.locked === true)
+      .map(palette => {
+        return (
+          <ColorEditor
+            palette={palette}
+            handleColor={this.handleColor}
+            key={palette.hex}
+          />
+        );
+      });
+
+    return (
+      <Fragment>
+        <div className="screen" />
+        <section className="SavePopup">
+          <button className="editor-exit" onClick={this.handleExit}>
+            X
+          </button>
+          <h3 className="editor-title">Save Your Palette</h3>
+          <form className="palette-form" onSubmit={this.handleSubmit}>
+            <label htmlFor="palette-title">Palette Title</label>
+            <input type="text" name="palette-title" />
+            <section className="palettes-section">{colorOptions}</section>
+            <button>Save to Existing Project</button>
+            <button type="button">Create New Project</button>
+          </form>
+        </section>
+      </Fragment>
+    );
+  }
 }
 
 const mapStateToProps = store => ({
