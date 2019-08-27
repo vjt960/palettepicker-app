@@ -1,9 +1,9 @@
 export const loginUser = async (username, password) => {
-  const url = 'http://localhost:3001';
-  const path = '/api/v1/users';
+  const url = "http://localhost:3001";
+  const path = "/api/v1/users";
   const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   };
   try {
@@ -19,11 +19,11 @@ export const loginUser = async (username, password) => {
 };
 
 export const createUser = async (username, password) => {
-  const url = 'http://localhost:3001';
-  const path = '/api/v1/users/new';
+  const url = "http://localhost:3001";
+  const path = "/api/v1/users/new";
   const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   };
   const response = await fetch(url + path, options);
@@ -32,15 +32,14 @@ export const createUser = async (username, password) => {
       const message = await response.json();
       throw new Error(message.error);
     }
-    const obj = await response.json();
-    return obj.id;
+    return response.json();
   } catch (error) {
     throw Error(error.message);
   }
 };
 
 export const getProjects = async userID => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/${userID}/projects`;
   const response = await fetch(url + path);
   try {
@@ -55,7 +54,7 @@ export const getProjects = async userID => {
 };
 
 export const getProject = async (userID, projectID) => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/${userID}/projects/${projectID}`;
   const response = await fetch(url + path);
   try {
@@ -70,11 +69,11 @@ export const getProject = async (userID, projectID) => {
 };
 
 export const createProject = async (user_id, name, description) => {
-  const url = 'http://:localhost:3001';
-  const path = '/api/v1/users/projects/new';
+  const url = "http://:localhost:3001";
+  const path = "/api/v1/users/projects/new";
   const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user_id, name, description })
   };
   const response = await fetch(url + path, options);
@@ -91,11 +90,11 @@ export const createProject = async (user_id, name, description) => {
 };
 
 export const editProject = async (projectID, name, description) => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/projects/${projectID}/edit`;
   const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, description })
   };
   const response = await fetch(url + path, options);
@@ -112,7 +111,7 @@ export const editProject = async (projectID, name, description) => {
 };
 
 export const deleteProject = async (userID, projectID) => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/${userID}/projects/${projectID}`;
   const response = await fetch(url + path);
   try {
@@ -127,7 +126,7 @@ export const deleteProject = async (userID, projectID) => {
 };
 
 export const getPalettes = async userID => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/${userID}/palettes`;
   const response = await fetch(url + path);
   try {
@@ -142,11 +141,11 @@ export const getPalettes = async userID => {
 };
 
 export const createPalette = async (projectID, name, colors) => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/users/projects/${projectID}/palettes`;
   const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, colors })
   };
   const response = await fetch(url + path, options);
@@ -162,7 +161,7 @@ export const createPalette = async (projectID, name, colors) => {
 };
 
 export const deletePalette = async (projectID, paletteID) => {
-  const url = 'http://:localhost:3001';
+  const url = "http://:localhost:3001";
   const path = `/api/v1/projects/${projectID}/palettes/${paletteID}`;
   const response = await fetch(url + path);
   try {
