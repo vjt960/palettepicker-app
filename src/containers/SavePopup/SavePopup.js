@@ -9,7 +9,7 @@ function SavePopup(props) {
     props.history.push("/");
   };
 
-  const handleColor = (color, format) => {
+  const handleColor = (color, format, newColor) => {
     const paletteCopy = props.currentPalette.slice();
     const colorIndex = props.currentPalette.findIndex(
       paletteColor => paletteColor.hex === color.hex
@@ -18,7 +18,8 @@ function SavePopup(props) {
       paletteCopy[colorIndex].locked = false;
       props.updateCurrentPalette(paletteCopy);
     } else if (format === "update") {
-      paletteCopy[colorIndex].hex = props.updateCurrentPalette(paletteCopy);
+      paletteCopy[colorIndex].hex = newColor;
+      props.updateCurrentPalette(paletteCopy);
     }
   };
 

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 export default class ColorEditor extends Component {
   state = {
-    color: ""
+    color: "",
+    updated: false
   };
 
   componentDidMount() {
@@ -11,7 +12,12 @@ export default class ColorEditor extends Component {
 
   handleChange = e => {
     const { value } = e.target;
-    this.setState({ color: value });
+    this.setState({ color: value, updated: true });
+  };
+
+  handleUpdate = () => {
+    this.props.handleColor(this.props.palette, "update", this.state.color);
+    this.setState({ updated: false });
   };
 
   render() {
@@ -30,13 +36,13 @@ export default class ColorEditor extends Component {
             onChange={e => this.handleChange(e)}
           />
         </section>
-        {/* <button
+        <button
           className="update-btn"
           type="button"
-          onClick={() => this.props.handleColor(this.props.palette, "update")}
+          onClick={this.handleUpdate}
         >
           Update Color
-        </button> */}
+        </button>
         <button
           className="remove-btn"
           type="button"
