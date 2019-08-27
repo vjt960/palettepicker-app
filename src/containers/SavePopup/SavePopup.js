@@ -88,16 +88,21 @@ class SavePopup extends Component {
             X
           </button>
           <h3 className="editor-title">Save Your Palette</h3>
-          <form className="palette-form" onSubmit={this.handleSubmit}>
+          <form className="palette-form">
             <label htmlFor="palette-title">Palette Title</label>
             <input type="text" name="palette-title" />
             <section className="palettes-section">{colorOptions}</section>
             {this.state.displayProjects && existingProjects}
             {this.state.createNewProject && newProject}
-            <button onClick={this.displayProjects}>
+            <button type="button" onClick={this.handleSubmit}>
+              Submit
+            </button>
+            <button type="button" onClick={this.displayProjects}>
               Save to an Existing Project
             </button>
-            <button onClick={this.createNewProject}>Create New Project</button>
+            <button type="button" onClick={this.createNewProject}>
+              Create New Project
+            </button>
           </form>
         </section>
       </Fragment>
