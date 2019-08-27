@@ -48,6 +48,10 @@ class userPopup extends Component {
     this.setState({ [name]: value });
   };
 
+  clearInputs = () => {
+    this.setState({ username: "", password: "" });
+  };
+
   render() {
     const inputs = (
       <Fragment>
