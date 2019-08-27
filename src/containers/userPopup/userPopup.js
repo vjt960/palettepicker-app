@@ -33,9 +33,18 @@ class userPopup extends Component {
     }
   };
 
-  handleRegister = e => {
+  handleRegister = async e => {
     console.log("Registering...");
+    const { username, password } = this.state;
     e.preventDefault();
+    try {
+      const newUser = await createUser(username, password);
+      this.props.updateCurrentUser(newUser);
+      this.handleExit();
+    } catch (error) {
+      console.log(error.message);
+      this.clearInputs();
+    }
     // capture register values
     // make sure user doesnt already exist in DB
     // Good: add user to database
