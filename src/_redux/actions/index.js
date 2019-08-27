@@ -42,8 +42,6 @@ export const updateCurrentUser = userDetails => {
 
 export const logoutUser = user => {
   return {
-    type: "LOGOUT_USER",
-    user
+    type: "LOGOUT_USER"
   };
 };
-
