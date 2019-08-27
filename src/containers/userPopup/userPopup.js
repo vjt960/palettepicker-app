@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
+import { loginUser, createUser } from "../../utilities/apiCalls";
 import "./userPopup.scss";
 
 class userPopup extends Component {
@@ -18,15 +19,18 @@ class userPopup extends Component {
   // user logs in, get user data / projects from server
   // dispatch data to store
   // close popup window
-  handleLogin = e => {
+  handleLogin = async e => {
     console.log("logging in...");
+    const { username, password } = this.state;
     e.preventDefault();
-    // capture login values
-    // verify against server and retrieve
-    // return user details and projects
-    // REDUX update store => ACTION: this.props.addUserProjects(projects)
-    // REDUX update user => ACTION: this.props.updateCurrentUser(userDetails)
-    // login user / close window
+    try {
+      const user = await loginUser(username, password);
+      this.props.updateCurrentUser(user);
+      this.handleExit();
+    } catch (error) {
+      console.log(error.message);
+      this.clearInputs();
+    }
   };
 
   handleRegister = e => {
