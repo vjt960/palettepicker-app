@@ -6,22 +6,25 @@ function SavePopup(props) {
   const handleExit = () => {
     props.history.push("/");
   };
-  const colorOptions = props.currentPalette.map(palette => {
-    return (
-      <article className="palette-details" key={palette.hex}>
-        <section className="palette-inputs">
-          <div
-            className="palette-color"
-            style={{
-              backgroundColor: palette.hex
-            }}
-          ></div>
-          <input type="text" defaultValue={palette.hex} />
-        </section>
-        <button className="remove-btn">Remove</button>
-      </article>
-    );
-  });
+
+  const colorOptions = props.currentPalette
+    .filter(palette => palette.locked === true)
+    .map(palette => {
+      return (
+        <article className="palette-details" key={palette.hex}>
+          <section className="palette-inputs">
+            <div
+              className="palette-color"
+              style={{
+                backgroundColor: palette.hex
+              }}
+            ></div>
+            <input type="text" defaultValue={palette.hex} />
+          </section>
+          <button className="remove-btn">Remove</button>
+        </article>
+      );
+    });
   return (
     <Fragment>
       <div className="screen" />
