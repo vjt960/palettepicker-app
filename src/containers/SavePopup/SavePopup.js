@@ -5,7 +5,10 @@ import "./SavePopup.scss";
 import ColorEditor from "../../components/ColorEditor/ColorEditor";
 
 class SavePopup extends Component {
-  state = {};
+  state = {
+    displayProjects: false,
+    createNewProject: false
+  };
 
   handleExit = () => {
     this.props.history.push("/");
@@ -30,6 +33,14 @@ class SavePopup extends Component {
     console.log("Submitting");
   };
 
+  displayProjects = () => {
+    this.setState({ displayProjects: true, createNewProject: false });
+  };
+
+  createNewProject = () => {
+    this.setState({ displayProjects: false, createNewProject: true });
+  };
+
   render() {
     const colorOptions = this.props.currentPalette
       .filter(palette => palette.locked === true)
@@ -43,6 +54,32 @@ class SavePopup extends Component {
         );
       });
 
+    const existingProjects = (
+      <section className="user-projects">
+        {this.props.userProjects.map((project, i) => {
+          return (
+            <article key={i}>
+              <input
+                type="radio"
+                name="user-project"
+                value={project.projectTitle}
+              />
+              <label>{project.projectTitle}</label>
+            </article>
+          );
+        })}
+      </section>
+    );
+
+    const newProject = (
+      <section className="new-project">
+        <label>Project Title:</label>
+        <input type="text" />
+        <label>Project Description (optional):</label>
+        <input type="text" />
+      </section>
+    );
+
     return (
       <Fragment>
         <div className="screen" />
@@ -55,8 +92,12 @@ class SavePopup extends Component {
             <label htmlFor="palette-title">Palette Title</label>
             <input type="text" name="palette-title" />
             <section className="palettes-section">{colorOptions}</section>
-            <button>Save to Existing Project</button>
-            <button type="button">Create New Project</button>
+            {this.state.displayProjects && existingProjects}
+            {this.state.createNewProject && newProject}
+            <button onClick={this.displayProjects}>
+              Save to an Existing Project
+            </button>
+            <button onClick={this.createNewProject}>Create New Project</button>
           </form>
         </section>
       </Fragment>
@@ -65,7 +106,8 @@ class SavePopup extends Component {
 }
 
 const mapStateToProps = store => ({
-  currentPalette: store.currentPalette
+  currentPalette: store.currentPalette,
+  userProjects: store.userProjects
 });
 
 const mapDispatchToProps = dispatch => ({
