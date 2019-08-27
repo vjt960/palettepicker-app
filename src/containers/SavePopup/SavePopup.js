@@ -56,9 +56,9 @@ class SavePopup extends Component {
 
     const existingProjects = (
       <section className="user-projects">
-        {this.props.userProjects.map((project, i) => {
+        {this.props.userProjects.map(project => {
           return (
-            <article key={i}>
+            <article key={project.id} id={project.id}>
               <input
                 type="radio"
                 name="user-project"
