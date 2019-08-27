@@ -1,48 +1,126 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import * as actions from "../../_redux/actions";
 import "./SavePopup.scss";
+import ColorEditor from "../../components/ColorEditor/ColorEditor";
 
-function SavePopup(props) {
-  const handleExit = () => {
-    props.history.push("/");
+class SavePopup extends Component {
+  state = {
+    displayProjects: false,
+    createNewProject: false
   };
-  const colorOptions = props.currentPalette.map(palette => {
-    return (
-      <article className="palette-details" key={palette.hex}>
-        <section className="palette-inputs">
-          <div
-            className="palette-color"
-            style={{
-              backgroundColor: palette.hex
-            }}
-          ></div>
-          <input type="text" defaultValue={palette.hex} />
-        </section>
-        <button className="remove-btn">Remove</button>
-      </article>
+
+  handleExit = () => {
+    this.props.history.push("/");
+  };
+
+  handleColor = (color, format, newColor) => {
+    const paletteCopy = this.props.currentPalette.slice();
+    const colorIndex = this.props.currentPalette.findIndex(
+      paletteColor => paletteColor.hex === color.hex
     );
-  });
-  return (
-    <Fragment>
-      <div className="screen" />
-      <section className="SavePopup">
-        <button className="editor-exit" onClick={handleExit}>
-          X
-        </button>
-        <form className="editor-form">
-          <h3 className="editor-title">Title</h3>
-          <label htmlFor="">Label 1</label>
-          <input type="text" />
-          <section className="palettes-section">{colorOptions}</section>
-          <button className="submit-btn">Submit</button>
-        </form>
+    if (format === "remove") {
+      paletteCopy[colorIndex].locked = false;
+      this.props.updateCurrentPalette(paletteCopy);
+    } else if (format === "update") {
+      paletteCopy[colorIndex].hex = newColor;
+      this.props.updateCurrentPalette(paletteCopy);
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("Submitting");
+  };
+
+  displayProjects = () => {
+    this.setState({ displayProjects: true, createNewProject: false });
+  };
+
+  createNewProject = () => {
+    this.setState({ displayProjects: false, createNewProject: true });
+  };
+
+  render() {
+    const colorOptions = this.props.currentPalette
+      .filter(palette => palette.locked === true)
+      .map(palette => {
+        return (
+          <ColorEditor
+            palette={palette}
+            handleColor={this.handleColor}
+            key={palette.hex}
+          />
+        );
+      });
+
+    const existingProjects = (
+      <section className="user-projects">
+        {this.props.userProjects.map(project => {
+          return (
+            <article key={project.id} id={project.id}>
+              <input
+                type="radio"
+                name="user-project"
+                value={project.projectTitle}
+              />
+              <label>{project.projectTitle}</label>
+            </article>
+          );
+        })}
       </section>
-    </Fragment>
-  );
+    );
+
+    const newProject = (
+      <section className="new-project">
+        <label>Project Title:</label>
+        <input type="text" />
+        <label>Project Description (optional):</label>
+        <input type="text" />
+      </section>
+    );
+
+    return (
+      <Fragment>
+        <div className="screen" />
+        <section className="SavePopup">
+          <button className="editor-exit" onClick={this.handleExit}>
+            X
+          </button>
+          <h3 className="editor-title">Save Your Palette</h3>
+          <form className="palette-form">
+            <label htmlFor="palette-title">Palette Title</label>
+            <input type="text" name="palette-title" />
+            <section className="palettes-section">{colorOptions}</section>
+            {this.state.displayProjects && existingProjects}
+            {this.state.createNewProject && newProject}
+            <button type="button" onClick={this.handleSubmit}>
+              Submit
+            </button>
+            <button type="button" onClick={this.displayProjects}>
+              Save to an Existing Project
+            </button>
+            <button type="button" onClick={this.createNewProject}>
+              Create New Project
+            </button>
+          </form>
+        </section>
+      </Fragment>
+    );
+  }
 }
 
 const mapStateToProps = store => ({
-  currentPalette: store.currentPalette
+  currentPalette: store.currentPalette,
+  userProjects: store.userProjects
 });
 
-export default connect(mapStateToProps)(SavePopup);
+const mapDispatchToProps = dispatch => ({
+  updateCurrentPalette: palette =>
+    dispatch(actions.updateCurrentPalette(palette))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SavePopup);
