@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "../../_redux/actions";
 import "./NavBar.scss";
 
 function NavBar(props) {
   const handleClick = (e, destination) => {
     e.preventDefault();
-    props.history.push(`/${destination}`);
+    props.history.push(`/${destination || ""}`);
   };
 
   const loginFormat =
@@ -16,8 +17,14 @@ function NavBar(props) {
         <button onClick={e => handleClick(e, "register")}>Register</button>
       </Fragment>
     ) : (
-      <button onClick={e => handleClick(e, "login")}>Logout</button>
+      <button onClick={e => handleLogout(e)}>Logout</button>
     );
+
+  const handleLogout = e => {
+    e.preventDefault();
+    props.logoutUser();
+    handleClick(e);
+  };
 
   return (
     <header className="NavBar">
@@ -31,4 +38,11 @@ const mapStateToProps = store => ({
   userDetails: store.userDetails
 });
 
-export default connect(mapStateToProps)(withRouter(NavBar));
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(actions.logoutUser())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(NavBar));
