@@ -32,29 +32,14 @@ function SavePopup(props) {
           handleColor={handleColor}
           key={palette.hex}
         />
-        // <article className="palette-details" key={palette.hex}>
-        //   <section className="palette-inputs">
-        //     <div
-        //       className="palette-color"
-        //       style={{
-        //         backgroundColor: palette.hex
-        //       }}
-        //     ></div>
-        //     <input type="text" defaultValue={palette.hex} />
-        //   </section>
-        //   <button className="update-btn" type="button" onClick={() => handleColor(palette, "update")}>
-        //     Update Color
-        //   </button>
-        //   <button
-        //     className="remove-btn"
-        //     type="button"
-        //     onClick={() => handleColor(palette, "remove")}
-        //   >
-        //     Remove
-        //   </button>
-        // </article>
       );
     });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("Submitting");
+  };
+
   return (
     <Fragment>
       <div className="screen" />
@@ -62,7 +47,7 @@ function SavePopup(props) {
         <button className="editor-exit" onClick={handleExit}>
           X
         </button>
-        <form className="editor-form">
+        <form className="editor-form" onSubmit={handleSubmit}>
           <h3 className="editor-title">Title</h3>
           <label htmlFor="">Label 1</label>
           <input type="text" />
