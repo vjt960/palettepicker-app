@@ -1,10 +1,20 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
+import * as actions from "../../_redux/actions";
 import "./SavePopup.scss";
 
 function SavePopup(props) {
   const handleExit = () => {
     props.history.push("/");
+  };
+
+  const removeColor = color => {
+    const paletteCopy = props.currentPalette.slice();
+    const colorIndex = props.currentPalette.findIndex(
+      paletteColor => paletteColor.hex === color.hex
+    );
+    paletteCopy[colorIndex].locked = false;
+    props.updateCurrentPalette(paletteCopy);
   };
 
   const colorOptions = props.currentPalette
@@ -21,7 +31,13 @@ function SavePopup(props) {
             ></div>
             <input type="text" defaultValue={palette.hex} />
           </section>
-          <button className="remove-btn">Remove</button>
+          <button
+            className="remove-btn"
+            type="button"
+            onClick={() => removeColor(palette)}
+          >
+            Remove
+          </button>
         </article>
       );
     });
@@ -48,4 +64,12 @@ const mapStateToProps = store => ({
   currentPalette: store.currentPalette
 });
 
-export default connect(mapStateToProps)(SavePopup);
+const mapDispatchToProps = dispatch => ({
+  updateCurrentPalette: palette =>
+    dispatch(actions.updateCurrentPalette(palette))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SavePopup);
