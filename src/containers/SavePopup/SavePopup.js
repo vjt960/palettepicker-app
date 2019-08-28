@@ -55,7 +55,8 @@ class SavePopup extends Component {
       });
 
     const existingProjects = (
-      <section className="user-projects">
+      <section className="query-param user-projects">
+        <h3>Choose an Existing Project:</h3>
         {this.props.userProjects.map(project => {
           return (
             <article key={project.id} id={project.id}>
@@ -72,7 +73,8 @@ class SavePopup extends Component {
     );
 
     const newProject = (
-      <section className="new-project">
+      <section className="query-param new-project">
+        <h3>Name Your Project:</h3>
         <label>Project Title:</label>
         <input type="text" />
         <label>Project Description (optional):</label>
@@ -80,31 +82,65 @@ class SavePopup extends Component {
       </section>
     );
 
+    const { displayProjects, createNewProject } = this.state;
     return (
       <Fragment>
         <div className="screen" />
-        <section className="SavePopup">
-          <button className="editor-exit" onClick={this.handleExit}>
-            X
-          </button>
-          <h3 className="editor-title">Save Your Palette</h3>
-          <form className="palette-form">
-            <label htmlFor="palette-title">Palette Title</label>
-            <input type="text" name="palette-title" />
-            <section className="palettes-section">{colorOptions}</section>
-            {this.state.displayProjects && existingProjects}
-            {this.state.createNewProject && newProject}
-            <button type="button" onClick={this.handleSubmit}>
-              Submit
-            </button>
-            <button type="button" onClick={this.displayProjects}>
-              Save to an Existing Project
-            </button>
-            <button type="button" onClick={this.createNewProject}>
-              Create New Project
-            </button>
-          </form>
-        </section>
+        <div className="SavePopup-container">
+          <section className="SavePopup">
+            <div className="exit-background">
+              <button className="save-exit" onClick={this.handleExit}>
+                X
+              </button>
+            </div>
+            <div className="title-background">
+              <h3 className="editor-title">Save Your Palette</h3>
+            </div>
+            <form className="palette-form">
+              <header>
+                <label htmlFor="palette-title">Palette Title:</label>
+                <input
+                  type="text"
+                  maxLength="25"
+                  autoComplete="off"
+                  name="palette-title"
+                />
+              </header>
+              <section className="palettes-section">{colorOptions}</section>
+              <div className="query-buttons">
+                <button type="button" onClick={this.displayProjects}>
+                  Save to an Existing Project
+                </button>
+                <button type="button" onClick={this.createNewProject}>
+                  Create New Project
+                </button>
+              </div>
+            </form>
+          </section>
+          <section
+            className="save-section"
+            style={{
+              transform:
+                createNewProject || displayProjects
+                  ? "translateY(110%)"
+                  : "translateY(0%)"
+            }}
+          >
+            <div className="query-inputs">
+              {displayProjects && existingProjects}
+              {createNewProject && newProject}
+            </div>
+            {(createNewProject || displayProjects) && (
+              <button
+                className="submit-btn"
+                type="button"
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </button>
+            )}
+          </section>
+        </div>
       </Fragment>
     );
   }
