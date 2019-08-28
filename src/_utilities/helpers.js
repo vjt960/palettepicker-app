@@ -1,7 +1,7 @@
 export const parseProjects = projects => {
-  projects.map(project => {
+  return projects.map(project => {
     return {
-      projectTitle: project.name,
+      projectTitle: project.title,
       projectId: project.id,
       projectDesc: project.description,
       palettes: project.palettes.map(palette => {
