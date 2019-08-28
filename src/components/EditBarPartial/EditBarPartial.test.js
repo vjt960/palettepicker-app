@@ -5,8 +5,11 @@ import { shallowToJson } from "enzyme-to-json";
 
 describe("EditBarPartial", () => {
   let wrapper;
+  const updateColors = jest.fn();
   beforeEach(() => {
-    wrapper = shallow(<EditBarPartial hueLocked={true} />);
+    wrapper = shallow(
+      <EditBarPartial hueLocked={true} updateColors={updateColors} />
+    );
   });
   it("should match the snapshot", () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -48,5 +51,10 @@ describe("EditBarPartial", () => {
       .children("i")
       .hasClass("fa-unlock-alt");
     expect(icon).toEqual(true);
+  });
+  it("should invoke the updateColors function if the 'phrase-button' button is clicked", () => {
+    const phraseButton = wrapper.find(".phrase-button");
+    phraseButton.simulate("click");
+    expect(updateColors).toHaveBeenCalled();
   });
 });
