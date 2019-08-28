@@ -18,9 +18,6 @@ class userPopup extends Component {
 
   handlePageChange = destination => this.props.history.push(`/${destination}`);
 
-  // user logs in, get user data / projects from server
-  // dispatch data to store
-  // close popup window
   handleLogin = async e => {
     console.log("logging in...");
     const { username, password } = this.state;
@@ -47,16 +44,13 @@ class userPopup extends Component {
     try {
       const newUser = await createUser(username, password);
       this.props.updateCurrentUser(newUser);
+      this.setState({ error: "" });
       this.handleExit();
     } catch (error) {
       console.log(error.message);
+      this.setState({ error: error.message });
       this.clearInputs();
     }
-    // capture register values
-    // make sure user doesnt already exist in DB
-    // Good: add user to database
-    // REDUX update user => ACTION: this.props.updateCurrentUser(userDetails)
-    // login user / close window
   };
 
   handleChanges = e => {
