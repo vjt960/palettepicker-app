@@ -3,7 +3,7 @@
   z-index: 2;
   text-align: center;
   width: 100%;
-  transition: 0.35s ease-in-out;
+  transition: 0.35s cubic-bezier(0.79, 0.16, 0.28, 1.24);
   font-family: "Lobster", cursive;
   letter-spacing: 1px;
 }

@@ -1,72 +1,173 @@
-.SavePopup {
+@import "../../_styles/variables.scss";
+
+.SavePopup-container {
   position: fixed;
   margin-left: auto;
   margin-right: auto;
-  top: 25%;
+  top: 19%;
   left: 15%;
   right: 15%;
   z-index: 4;
-  max-width: 400px;
-  border: 1px solid coral;
-  background-color: white;
-  color: red;
+  width: 400px;
+}
 
-  .palettes-section {
-    border: 1px solid red;
-    height: 150px;
-    width: 80%;
+.save-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  border: 1px solid $primary-color;
+  border-bottom: 5px solid $primary-color;
+  width: 100%;
+  height: 190px;
+  transition: 0.8s all cubic-bezier(0.13, 1.28, 0.5, 1.14);
+  background-color: $primary-light;
+  .submit-btn {
+    background-color: $primary-color;
+    color: $primary-light;
+    padding: 0.7rem;
+    margin-bottom: 0.3rem;
+    border: 1px solid $primary-light;
+    font-size: 14px;
+    width: 98%;
+  }
+  .query-inputs > section {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .query-param > input {
+    margin: 0.2rem 0;
+    @include input-focus;
+  }
+
+  .query-title-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: -20px;
+    left: 0;
+    right: 0;
+    background-color: $primary-dark;
+    border: 2px solid white;
+    color: $primary-light;
+    font-family: $font-3;
+    padding: 0.5rem;
+    transform: skew(5deg);
+  }
+
+  .queries-section {
+    border: 1px dashed $primary-color;
     overflow: scroll;
+    height: 70px;
+    width: 360px;
   }
-  .palette-details {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.2rem 0.4rem;
-    border: 1px solid blue;
+
+  .query-radio {
+    background-color: $primary-dark;
+    color: $primary-light;
+    margin: 0.1rem 0;
+    padding: 0.1rem;
   }
-  .palette-inputs {
-    display: flex;
+
+  .query-radio > label {
+    padding-left: 0.5rem;
   }
-  .palette-color {
-    height: 1.5rem;
-    min-width: 5rem;
-    margin-right: 0.5rem;
-    border: 1px solid black;
+
+  h3 {
+    margin: 0;
+    margin-bottom: 0.2rem;
   }
+}
+
+.SavePopup {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border: 1px solid $primary-color;
+  border-bottom: 5px solid $primary-color;
+  background-color: $primary-light;
+  transition: 0.7s height ease-in-out;
+
+  .title-background {
+    position: absolute;
+    top: -45px;
+    left: -15px;
+    transform: skew(15deg);
+    padding: 0.7rem;
+    background-color: $primary-color;
+  }
+
+  .editor-title {
+    transform: skew(-15deg);
+    color: $primary-light;
+    font-family: $font-3;
+  }
+
+  .exit-background {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    padding: 0.4rem;
+    padding-top: 0.7rem;
+    transform: skew(-12deg);
+    background-color: $primary-color;
+  }
+
+  .save-exit {
+    background-color: $primary-dark;
+    color: $primary-light;
+    border: 1px solid $primary-dark;
+    transform: skew(-4deg);
+    font-size: 15px;
+    padding: 0.3rem 0.5rem;
+  }
+
   .palette-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0.6rem 0.5rem;
   }
 
-  .editor-title {
-    margin: 0;
+  .palette-form > header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
   }
 
-  .editor-exit {
-    position: absolute;
-    right: -10px;
-    top: -10px;
-  }
-
-  .submit-btn {
-    border: 1px solid red;
-    background-color: coral;
-    color: white;
+  .palette-form > header > label {
     font-size: 16px;
-    border-radius: 5px;
-    width: 70%;
-    padding: 0.5rem;
-    margin: 0.5rem;
+    text-decoration: underline;
   }
 
-  .remove-btn {
+  .palette-form > header > input {
+    font-size: 14px;
+    padding: 0.1rem;
+    margin-left: 0.3rem;
+    @include input-focus;
   }
 
-  .screen {
-    position: absolute;
-    z-index: 3;
-    background-color: rgba(6, 16, 20, 0.658);
-    height: 100%;
-    width: 100vw;
+  .palettes-section {
+    background-color: $primary-light;
+    border: 1px dashed $primary-dark;
+    width: 90%;
+    height: 20vh;
+    overflow: scroll;
+  }
+
+  button {
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+    color: $primary-light;
+    padding: 0.7rem;
+    margin: 0.2rem 0;
+    font-size: 14px;
+    width: 100%;
   }
 }

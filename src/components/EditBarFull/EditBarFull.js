@@ -3,7 +3,7 @@ import "./EditBarFull.css";
 
 export default function EditBarFull(props) {
   const editBarActive = {
-    transform: "translateY(0%)"
+    transform: "translateY(-9%)"
   };
   return (
     <section

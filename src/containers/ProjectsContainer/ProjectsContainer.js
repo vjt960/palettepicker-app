@@ -82,7 +82,10 @@ class ProjectsContainer extends Component {
             paletteId: "13AS3U98MN"
           }
         ]
-      }
+      },
+      { projectTitle: "--Send to Eric", palettes: [] },
+      { projectTitle: "SUPER!!", palettes: [] },
+      { projectTitle: "idea 3", palettes: [] }
     ]);
   }
 
