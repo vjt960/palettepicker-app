@@ -22,7 +22,7 @@ export default function EditBarPartial(props) {
         </button>
         <div className="current-format">
           <div className="format-hue">
-            <p>{props.hue || props.hue}</p>
+            <p>{props.hue}</p>
             {props.hueLocked ? (
               <i className="fas fa-sm fa-lock" onClick={props.hueUnlock} />
             ) : (
