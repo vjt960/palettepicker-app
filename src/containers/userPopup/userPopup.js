@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
-import { loginUser, createUser } from "../../utilities/apiCalls";
+import { loginUser, createUser, getProjects } from "../../_utilities/apiCalls";
+import { parseProjects } from "../../_utilities/helpers";
 import "./userPopup.scss";
 
 class userPopup extends Component {
@@ -26,10 +27,15 @@ class userPopup extends Component {
     e.preventDefault();
     try {
       const user = await loginUser(username, password);
-      this.props.updateCurrentUser(user);
+      const projectsData = await getProjects(user.id);
+      const projects = parseProjects(projectsData);
+      console.log(projects);
+      this.props.updateCurrentUser(user, projects);
+      this.setState({ error: "" });
       this.handleExit();
     } catch (error) {
       console.log(error.message);
+      this.setState({ error: error.message });
       this.clearInputs();
     }
   };
@@ -136,9 +142,8 @@ class userPopup extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addUserProjects: projects => dispatch(actions.addUserProjects(projects)),
-  updateCurrentUser: userDetails =>
-    dispatch(actions.updateCurrentUser(userDetails))
+  updateCurrentUser: (userDetails, projects) =>
+    dispatch(actions.updateCurrentUser(userDetails, projects))
 });
 
 export default connect(
