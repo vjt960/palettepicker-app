@@ -26,12 +26,10 @@ class userPopup extends Component {
       const user = await loginUser(username, password);
       const projectsData = await getProjects(user.id);
       const projects = parseProjects(projectsData);
-      console.log(projects);
       this.props.updateCurrentUser(user, projects);
       this.setState({ error: "" });
       this.handleExit();
     } catch (error) {
-      console.log(error.message);
       this.setState({ error: error.message });
       this.clearInputs();
     }
@@ -47,7 +45,6 @@ class userPopup extends Component {
       this.setState({ error: "" });
       this.handleExit();
     } catch (error) {
-      console.log(error.message);
       this.setState({ error: error.message });
       this.clearInputs();
     }

@@ -39,7 +39,7 @@ export const createUser = async (username, password) => {
 };
 
 export const getProjects = async userID => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/${userID}/projects`;
   const response = await fetch(url + path);
   try {
@@ -47,7 +47,7 @@ export const getProjects = async userID => {
       const message = await response.json();
       throw new Error(message.error);
     }
-    return await response.json();
+    return response.json();
   } catch ({ message }) {
     throw Error(message);
   }
