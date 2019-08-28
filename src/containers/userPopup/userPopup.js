@@ -7,7 +7,8 @@ import "./userPopup.scss";
 class userPopup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: ""
   };
 
   handleExit = () => {
@@ -126,6 +127,7 @@ class userPopup extends Component {
             {this.props.location.pathname === "/login"
               ? loginFormat
               : registerFormat}
+            <p className="error-message">{this.state.error}</p>
           </section>
         </section>
       </Fragment>
