@@ -56,25 +56,31 @@ class SavePopup extends Component {
 
     const existingProjects = (
       <section className="query-param user-projects">
-        <h3>Choose an Existing Project:</h3>
-        {this.props.userProjects.map(project => {
-          return (
-            <article key={project.id} id={project.id}>
-              <input
-                type="radio"
-                name="user-project"
-                value={project.projectTitle}
-              />
-              <label>{project.projectTitle}</label>
-            </article>
-          );
-        })}
+        <div className="query-title-container">
+          <h3>Choose an Existing Project:</h3>
+        </div>
+        <section className="queries-section">
+          {this.props.userProjects.map(project => {
+            return (
+              <article className="query-radio" key={project.id} id={project.id}>
+                <input
+                  type="radio"
+                  name="user-project"
+                  value={project.projectTitle}
+                />
+                <label>{project.projectTitle}</label>
+              </article>
+            );
+          })}
+        </section>
       </section>
     );
 
     const newProject = (
       <section className="query-param new-project">
-        <h3>Name Your Project:</h3>
+        <div className="query-title-container">
+          <h3>Name Your Project:</h3>
+        </div>
         <label>Project Title:</label>
         <input type="text" />
         <label>Project Description (optional):</label>
