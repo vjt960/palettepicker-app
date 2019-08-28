@@ -33,10 +33,11 @@ export const removeUserProject = id => {
   };
 };
 
-export const updateCurrentUser = userDetails => {
+export const updateCurrentUser = (userDetails, projects = []) => {
   return {
     type: "UPDATE_CURRENT_USER",
-    userDetails
+    userDetails,
+    projects
   };
 };
 
