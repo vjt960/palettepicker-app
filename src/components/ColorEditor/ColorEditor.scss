@@ -1,0 +1,49 @@
+@import "../../_styles/variables.scss";
+
+.ColorEditor {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.2rem 0.7rem 0 0.7rem;
+  height: 2rem;
+  background-color: $primary-light;
+  border: 1px solid $primary-dark;
+
+  .palette-inputs {
+    display: flex;
+    margin-right: 2rem;
+    width: 50%;
+  }
+  .palette-color {
+    width: 15rem;
+  }
+
+  .color-input {
+    width: 100%;
+    border: none;
+    @include input-focus;
+  }
+
+  .palette-btns {
+    display: flex;
+    width: 40%;
+  }
+
+  .remove-btn {
+    flex: 1;
+    background-color: $primary-light;
+    border: none;
+  }
+
+  .remove-btn > i {
+    color: $primary-dark;
+  }
+
+  .update-btn {
+    flex: 3;
+    border-radius: 0;
+    border: none;
+    &:hover {
+      background-color: red;
+    }
+  }
+}
