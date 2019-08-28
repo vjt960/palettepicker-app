@@ -24,7 +24,7 @@ class userPopup extends Component {
     e.preventDefault();
     try {
       const user = await loginUser(username, password);
-      const projectsData = await getProjects(user.id);
+      const projectsData = await getProjects(user.id).catch(() => []);
       const projects = parseProjects(projectsData);
       this.props.updateCurrentUser(user, projects);
       this.setState({ error: "" });
