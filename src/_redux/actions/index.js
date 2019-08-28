@@ -46,3 +46,10 @@ export const logoutUser = user => {
     type: "LOGOUT_USER"
   };
 };
+
+export const reloadProjects = projects => {
+  return {
+    type: "RELOAD_PROJECTS",
+    projects
+  };
+};
