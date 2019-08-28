@@ -20,7 +20,15 @@ export default class ColorBar extends Component {
       opacity: 1
     };
     return (
-      <div className="color-block" style={defaultStyle}>
+      <div
+        className="color-block"
+        onClick={
+          this.props.color.locked
+            ? () => this.props.handleLockStatus(this.props.color, false)
+            : () => this.props.handleLockStatus(this.props.color, true)
+        }
+        style={defaultStyle}
+      >
         <div
           className={`color-bar color-${this.props.number + 1}`}
           style={this.props.color.locked ? lockedBarStyle : colorBarStyle}
@@ -31,11 +39,6 @@ export default class ColorBar extends Component {
         </div>
         <button
           className="lock-button"
-          onClick={
-            this.props.color.locked
-              ? () => this.props.handleLockStatus(this.props.color, false)
-              : () => this.props.handleLockStatus(this.props.color, true)
-          }
           style={this.props.color.locked ? lockedStyle : null}
         >
           {this.props.color.locked ? (
