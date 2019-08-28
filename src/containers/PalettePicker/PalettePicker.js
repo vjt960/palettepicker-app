@@ -155,6 +155,11 @@ class PalettePicker extends Component {
   }
 }
 
+//handle save button disable, needs to check elements that are locked.
+// const mapStateToProps = ({
+
+// })
+
 const mapDispatchToProps = dispatch => ({
   createNewProject: project => dispatch(actions.createNewProject(project)),
   updateExistingProject: project =>
