@@ -7,11 +7,45 @@ import ColorEditor from "../../components/ColorEditor/ColorEditor";
 class SavePopup extends Component {
   state = {
     displayProjects: false,
-    createNewProject: false
+    createNewProject: false,
+    selectedProject: "",
+    newProjectTitle: "",
+    newProjectDesc: ""
   };
 
   handleExit = () => {
     this.props.history.push("/");
+  };
+
+  handleRadio = e => {
+    const { id } = e.target;
+    this.setState({ selectedProject: id });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.displayProjects) {
+      console.log("updateExisting", this.state.selectedProject);
+    } else {
+      console.log(
+        "createNew",
+        this.state.newProjectDesc,
+        this.state.newProjectTitle
+      );
+    }
+    this.retrieveFavorites();
+    this.handleExit();
+  };
+
+  retrieveFavorites = () => {
+    const favorites = this.props.currentPalette
+      .filter(color => {
+        if (color.locked === true) return color;
+      })
+      .map(favoriteColor => {
+        return favoriteColor.hex;
+      });
+    console.log(favorites);
   };
 
   handleColor = (color, format, newColor) => {
@@ -28,17 +62,17 @@ class SavePopup extends Component {
     }
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log("Submitting");
-  };
-
   displayProjects = () => {
     this.setState({ displayProjects: true, createNewProject: false });
   };
 
   createNewProject = () => {
     this.setState({ displayProjects: false, createNewProject: true });
+  };
+
+  handleChange = e => {
+    const { value, name } = e.target;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -62,11 +96,13 @@ class SavePopup extends Component {
         <section className="queries-section">
           {this.props.userProjects.map(project => {
             return (
-              <article className="query-radio" key={project.id} id={project.id}>
+              <article className="query-radio" key={project.projectId}>
                 <input
                   type="radio"
                   name="user-project"
                   value={project.projectTitle}
+                  id={project.projectId}
+                  onClick={e => this.handleRadio(e)}
                 />
                 <label>{project.projectTitle}</label>
               </article>
@@ -81,10 +117,18 @@ class SavePopup extends Component {
         <div className="query-title-container">
           <h3>Name Your Project:</h3>
         </div>
-        <label>Project Title:</label>
-        <input type="text" />
-        <label>Project Description (optional):</label>
-        <input type="text" />
+        <label htmlFor="newProjectTitle">Project Title:</label>
+        <input
+          type="text"
+          name="newProjectTitle"
+          onChange={e => this.handleChange(e)}
+        />
+        <label htmlFor="newProjectDesc">Project Description (optional):</label>
+        <input
+          type="text"
+          name="newProjectDesc"
+          onChange={e => this.handleChange(e)}
+        />
       </section>
     );
 
