@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SavePopup matches snapshot 1`] = `
+<Fragment>
+  <div
+    className="screen"
+  />
+  <div
+    className="SavePopup-container"
+  >
+    <section
+      className="SavePopup"
+    >
+      <div
+        className="exit-background"
+      >
+        <button
+          className="save-exit"
+          onClick={[Function]}
+        >
+          X
+        </button>
+      </div>
+      <div
+        className="title-background"
+      >
+        <h3
+          className="editor-title"
+        >
+          Save Your Palette
+        </h3>
+      </div>
+      <form
+        className="palette-form"
+      >
+        <header>
+          <p
+            className="error-message"
+          />
+          <label
+            htmlFor="palette-title"
+          >
+            Palette Title:
+          </label>
+          <input
+            autoComplete="off"
+            maxLength="25"
+            name="paletteTitle"
+            onChange={[Function]}
+            type="text"
+          />
+        </header>
+        <section
+          className="palettes-section"
+        >
+          <ColorEditor
+            handleColor={[Function]}
+            key="NaN"
+            palette={
+              Object {
+                "locked": true,
+              }
+            }
+          />
+        </section>
+        <div
+          className="query-buttons"
+        >
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            Save to an Existing Project
+          </button>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            Create New Project
+          </button>
+        </div>
+      </form>
+    </section>
+    <section
+      className="save-section"
+      style={
+        Object {
+          "transform": "translateY(0%)",
+        }
+      }
+    >
+      <div
+        className="query-inputs"
+      />
+    </section>
+  </div>
+</Fragment>
+`;
