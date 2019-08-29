@@ -22,7 +22,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = "http://localhost:3001/api/v1/users";
+      const url = "https://kra-teo-colors-api.herokuapp.com/api/v1/users";
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = "http://localhost:3001/api/v1/users/new";
+      const url = "https://kra-teo-colors-api.herokuapp.com/api/v1/users/new";
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -104,7 +104,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = `http://localhost:3001/api/v1/users/${userID}/projects`;
+      const url = `https://kra-teo-colors-api.herokuapp.com/api/v1/users/${userID}/projects`;
       getProjects(userID);
       expect(window.fetch).toHaveBeenCalledWith(url);
     });
@@ -144,7 +144,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = `http://localhost:3001/api/v1/users/projects/new`;
+      const url = `https://kra-teo-colors-api.herokuapp.com/api/v1/users/projects/new`;
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -187,7 +187,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = `http://localhost:3001/api/v1/users/${user_id}/projects/${projectID}`;
+      const url = `https://kra-teo-colors-api.herokuapp.com/api/v1/users/${user_id}/projects/${projectID}`;
       const options = {
         method: "DELETE"
       };
@@ -230,7 +230,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = `http://localhost:3001/api/v1/users/projects/${projectID}/palettes`;
+      const url = `https://kra-teo-colors-api.herokuapp.com/api/v1/users/projects/${projectID}/palettes`;
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -274,7 +274,7 @@ describe("apiCalls", () => {
     });
 
     it("should be called with the correct url", () => {
-      const url = `http://localhost:3001/api/v1/projects/${projectID}/palettes/${paletteID}`;
+      const url = `https://kra-teo-colors-api.herokuapp.com/api/v1/projects/${projectID}/palettes/${paletteID}`;
       const options = {
         method: "DELETE"
       };

@@ -46,6 +46,7 @@ exports[`Project should match the snapshot 1`] = `
           "#111",
         ]
       }
+      key="NaN"
       title="ItsMe!"
     />
   </section>

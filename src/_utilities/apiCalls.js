@@ -1,5 +1,5 @@
 export const loginUser = async (username, password) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = "/api/v1/users";
   const options = {
     method: "POST",
@@ -19,7 +19,7 @@ export const loginUser = async (username, password) => {
 };
 
 export const createUser = async (username, password) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = "/api/v1/users/new";
   const options = {
     method: "POST",
@@ -39,7 +39,7 @@ export const createUser = async (username, password) => {
 };
 
 export const getProjects = async userID => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = `/api/v1/users/${userID}/projects`;
   const response = await fetch(url + path);
   try {
@@ -54,7 +54,7 @@ export const getProjects = async userID => {
 };
 
 export const createProject = async (user_id, name, description) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = "/api/v1/users/projects/new";
   const options = {
     method: "POST",
@@ -75,7 +75,7 @@ export const createProject = async (user_id, name, description) => {
 };
 
 export const deleteProject = async (userID, projectID) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = `/api/v1/users/${userID}/projects/${projectID}`;
   const options = { method: "DELETE" };
   const response = await fetch(url + path, options);
@@ -91,7 +91,7 @@ export const deleteProject = async (userID, projectID) => {
 };
 
 export const createPalette = async (projectID, name, colors) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = `/api/v1/users/projects/${projectID}/palettes`;
   const options = {
     method: "POST",
@@ -111,7 +111,7 @@ export const createPalette = async (projectID, name, colors) => {
 };
 
 export const deletePalette = async (projectID, paletteID) => {
-  const url = "http://localhost:3001";
+  const url = "https://kra-teo-colors-api.herokuapp.com";
   const path = `/api/v1/projects/${projectID}/palettes/${paletteID}`;
   const options = { method: "DELETE" };
   const response = await fetch(url + path, options);
