@@ -8,7 +8,7 @@ import * as actions from "../../_redux/actions";
 import { connect } from "react-redux";
 import "./PalettePicker.css";
 
-class PalettePicker extends Component {
+export class PalettePicker extends Component {
   state = {
     hue: "",
     hueLocked: false,
