@@ -8,7 +8,7 @@ import {
 } from "../../_utilities/apiCalls";
 import { parseProjects } from "../../_utilities/helpers";
 import "./SavePopup.scss";
-import ColorEditor from "../../components/ColorEditor/ColorEditor";
+import ColorEditor from "../ColorEditor/ColorEditor";
 
 class SavePopup extends Component {
   state = {

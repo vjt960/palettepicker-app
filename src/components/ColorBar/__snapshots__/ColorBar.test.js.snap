@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorBar should display the lock icon if the color is locked 1`] = `
+<div
+  className="color-block"
+  style={
+    Object {
+      "animation": "move 0.7s ease-in 0.5s forwards",
+      "transform": "translateY(-150%)",
+    }
+  }
+>
+  <div
+    className="color-bar color-5"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottom": "5px solid black",
+      }
+    }
+  >
+    <p>
+      #FFF
+    </p>
+  </div>
+  <button
+    className="lock-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "height": "15%",
+        "opacity": 1,
+        "visibility": "visible",
+      }
+    }
+  >
+    <i
+      className="fas fa-2x fa-lock"
+    />
+  </button>
+</div>
+`;
+
+exports[`ColorBar should match the snapshot 1`] = `
+<div
+  className="color-block"
+  style={
+    Object {
+      "animation": "move 0.7s ease-in 0.5s forwards",
+      "transform": "translateY(-150%)",
+    }
+  }
+>
+  <div
+    className="color-bar color-5"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+      }
+    }
+  >
+    <p>
+      #FFF
+    </p>
+  </div>
+  <button
+    className="lock-button"
+    onClick={[Function]}
+    style={null}
+  >
+    <i
+      className="fas fa-2x fa-unlock-alt"
+    />
+  </button>
+</div>
+`;
+
+exports[`ColorBar should render the hex codes vertically if the vRotate prop is passed in 1`] = `
+<div
+  className="color-block"
+  style={
+    Object {
+      "animation": "move 0.7s ease-in NaNs forwards",
+      "transform": "translateY(-150%)",
+    }
+  }
+>
+  <div
+    className="color-bar color-NaN"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottom": "5px solid black",
+      }
+    }
+  >
+    <p
+      className="color-bar-text-vertical"
+    >
+      #FFF
+    </p>
+  </div>
+  <button
+    className="lock-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "height": "15%",
+        "opacity": 1,
+        "visibility": "visible",
+      }
+    }
+  >
+    <i
+      className="fas fa-2x fa-lock"
+    />
+  </button>
+</div>
+`;

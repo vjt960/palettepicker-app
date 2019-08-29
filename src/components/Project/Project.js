@@ -1,6 +1,6 @@
 import React from "react";
 import Palette from "../Palette/Palette";
-import { TweenMax } from "gsap/all";
+import { TweenMax } from "gsap";
 import { Transition } from "react-transition-group";
 import "./Project.scss";
 
