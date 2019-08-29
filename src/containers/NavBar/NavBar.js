@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
 import "./NavBar.scss";
 
-function NavBar(props) {
+export const NavBar = props => {
   const handleClick = (e, destination) => {
     e.preventDefault();
     props.history.push(`/${destination || ""}`);
@@ -13,11 +13,17 @@ function NavBar(props) {
   const loginFormat =
     Object.keys(props.userDetails).length === 0 ? (
       <Fragment>
-        <button onClick={e => handleClick(e, "login")}>Login</button>
-        <button onClick={e => handleClick(e, "register")}>Register</button>
+        <button data-test="login" onClick={e => handleClick(e, "login")}>
+          Login
+        </button>
+        <button data-test="register" onClick={e => handleClick(e, "register")}>
+          Register
+        </button>
       </Fragment>
     ) : (
-      <button onClick={e => handleLogout(e)}>Logout</button>
+      <button data-test="logout" onClick={e => handleLogout(e)}>
+        Logout
+      </button>
     );
 
   const handleLogout = e => {
@@ -32,7 +38,7 @@ function NavBar(props) {
       <form className="navbar-form">{loginFormat}</form>
     </header>
   );
-}
+};
 
 const mapStateToProps = store => ({
   userDetails: store.userDetails
