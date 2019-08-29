@@ -25,7 +25,7 @@ describe("ColorBar", () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
   it("should invoke the handleLockStatus function if the '.lock-button' (while locked:false) is clicked", () => {
-    const button = wrapper.find(".lock-button");
+    const button = wrapper.find(".color-block");
     button.simulate("click");
     expect(handleLockStatus).toHaveBeenCalled();
   });
@@ -37,7 +37,7 @@ describe("ColorBar", () => {
         handleLockStatus={handleLockStatus}
       />
     );
-    const button = wrapper.find(".lock-button");
+    const button = wrapper.find(".color-block");
     button.simulate("click");
     expect(handleLockStatus).toHaveBeenCalled();
   });
