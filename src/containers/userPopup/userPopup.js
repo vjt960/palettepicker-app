@@ -19,7 +19,6 @@ class userPopup extends Component {
   handlePageChange = destination => this.props.history.push(`/${destination}`);
 
   handleLogin = async e => {
-    console.log("logging in...");
     const { username, password } = this.state;
     e.preventDefault();
     try {
@@ -36,7 +35,6 @@ class userPopup extends Component {
   };
 
   handleRegister = async e => {
-    console.log("Registering...");
     const { username, password } = this.state;
     e.preventDefault();
     try {
