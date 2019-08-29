@@ -7,6 +7,23 @@ export const userProjects = (state = [], action) => {
       return resetState;
     case "RELOAD_PROJECTS":
       return action.projects;
+    case "REMOVE_USER_PROJECT":
+      return state.filter(project => project.projectId !== action.id);
+    case "REMOVE_PALETTE":
+      return state.map(project => {
+        if (project.projectId !== action.projectId) {
+          return project;
+        } else {
+          return {
+            projectTitle: project.projectTitle,
+            projectId: project.projectId,
+            projectDesc: project.projectDesc,
+            palettes: project.palettes.filter(
+              palette => palette.paletteId !== action.paletteId
+            )
+          };
+        }
+      });
     default:
       return state;
   }
