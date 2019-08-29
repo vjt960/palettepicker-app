@@ -54,7 +54,7 @@ export const getProjects = async userID => {
 };
 
 export const getProject = async (userID, projectID) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/${userID}/projects/${projectID}`;
   const response = await fetch(url + path);
   try {
@@ -69,7 +69,7 @@ export const getProject = async (userID, projectID) => {
 };
 
 export const createProject = async (user_id, name, description) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = "/api/v1/users/projects/new";
   const options = {
     method: "POST",
@@ -83,14 +83,14 @@ export const createProject = async (user_id, name, description) => {
       throw new Error(message.error);
     }
     const obj = await response.json();
-    return obj[0];
+    return obj.id;
   } catch ({ message }) {
     throw Error(message);
   }
 };
 
 export const editProject = async (projectID, name, description) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/projects/${projectID}/edit`;
   const options = {
     method: "POST",
@@ -111,9 +111,10 @@ export const editProject = async (projectID, name, description) => {
 };
 
 export const deleteProject = async (userID, projectID) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/${userID}/projects/${projectID}`;
-  const response = await fetch(url + path);
+  const options = { method: "DELETE" };
+  const response = await fetch(url + path, options);
   try {
     if (!response.ok) {
       const message = await response.json();
@@ -126,7 +127,7 @@ export const deleteProject = async (userID, projectID) => {
 };
 
 export const getPalettes = async userID => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/${userID}/palettes`;
   const response = await fetch(url + path);
   try {
@@ -141,7 +142,7 @@ export const getPalettes = async userID => {
 };
 
 export const createPalette = async (projectID, name, colors) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/users/projects/${projectID}/palettes`;
   const options = {
     method: "POST",
@@ -161,9 +162,10 @@ export const createPalette = async (projectID, name, colors) => {
 };
 
 export const deletePalette = async (projectID, paletteID) => {
-  const url = "http://:localhost:3001";
+  const url = "http://localhost:3001";
   const path = `/api/v1/projects/${projectID}/palettes/${paletteID}`;
-  const response = await fetch(url + path);
+  const options = { method: "DELETE" };
+  const response = await fetch(url + path, options);
   try {
     if (!response.ok) {
       const message = await response.json();
