@@ -3,7 +3,7 @@ import "./PaletteEditor.css";
 
 export default function PaletteEditor(props) {
   const handleExit = () => {
-    props.history.goBack();
+    props.history.push("/");
   };
   return (
     <Fragment>
