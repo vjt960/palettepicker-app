@@ -13,7 +13,7 @@ const Project = props => {
         removePalette={props.removePalette}
         projectId={props.id}
         id={palette.paletteId}
-        key={palette.paletteId}
+        key={palette.paletteId + props.id}
       />
     );
   });
