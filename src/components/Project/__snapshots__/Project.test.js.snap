@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Project should match the snapshot 1`] = `
+<Transition
+  addEndListener={[Function]}
+  appear={true}
+  enter={true}
+  exit={true}
+  in={false}
+  mountOnEnter={true}
+  onEnter={[Function]}
+  onEntered={[Function]}
+  onEntering={[Function]}
+  onExit={[Function]}
+  onExited={[Function]}
+  onExiting={[Function]}
+  timeout={1000}
+  unmountOnExit={true}
+>
+  <section
+    className="Project"
+  >
+    <div
+      className="project-title"
+    >
+      <h2 />
+    </div>
+    <div
+      className="dotted-line"
+    />
+    <div
+      className="delete-wrapper"
+    >
+      <button
+        className="project-delete"
+        onClick={[Function]}
+      >
+        <h2>
+          X
+        </h2>
+      </button>
+    </div>
+    <withRouter(Palette)
+      colors={
+        Array [
+          "#111",
+        ]
+      }
+      title="ItsMe!"
+    />
+  </section>
+</Transition>
+`;
