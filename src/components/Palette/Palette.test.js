@@ -1,6 +1,5 @@
 import React from "react";
 import { Palette } from "./Palette";
-import PaletteEditor from "../PaletteEditor/PaletteEditor";
 import { shallow } from "enzyme";
 import { shallowToJson } from "enzyme-to-json";
 

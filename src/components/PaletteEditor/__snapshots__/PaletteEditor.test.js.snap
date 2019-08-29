@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaletteEditor should match the snapshot 1`] = `
+<Fragment>
+  <div
+    className="screen"
+  />
+  <section
+    className="PaletteEditor"
+  >
+    <button
+      className="editor-exit"
+      onClick={[Function]}
+    >
+      X
+    </button>
+    <form
+      action=""
+      className="editor-form"
+    >
+      <h3
+        className="editor-title"
+      >
+        Title
+      </h3>
+      <label
+        htmlFor=""
+      >
+        Label 1
+      </label>
+      <input
+        type="text"
+      />
+      <label
+        htmlFor=""
+      >
+        Label 2
+      </label>
+      <input
+        type="text"
+      />
+    </form>
+  </section>
+</Fragment>
+`;
