@@ -3,6 +3,7 @@
 exports[`ColorBar should display the lock icon if the color is locked 1`] = `
 <div
   className="color-block"
+  onClick={[Function]}
   style={
     Object {
       "animation": "move 0.7s ease-in 0.5s forwards",
@@ -25,7 +26,6 @@ exports[`ColorBar should display the lock icon if the color is locked 1`] = `
   </div>
   <button
     className="lock-button"
-    onClick={[Function]}
     style={
       Object {
         "height": "15%",
@@ -44,6 +44,7 @@ exports[`ColorBar should display the lock icon if the color is locked 1`] = `
 exports[`ColorBar should match the snapshot 1`] = `
 <div
   className="color-block"
+  onClick={[Function]}
   style={
     Object {
       "animation": "move 0.7s ease-in 0.5s forwards",
@@ -65,7 +66,6 @@ exports[`ColorBar should match the snapshot 1`] = `
   </div>
   <button
     className="lock-button"
-    onClick={[Function]}
     style={null}
   >
     <i
@@ -78,6 +78,7 @@ exports[`ColorBar should match the snapshot 1`] = `
 exports[`ColorBar should render the hex codes vertically if the vRotate prop is passed in 1`] = `
 <div
   className="color-block"
+  onClick={[Function]}
   style={
     Object {
       "animation": "move 0.7s ease-in NaNs forwards",
@@ -102,7 +103,6 @@ exports[`ColorBar should render the hex codes vertically if the vRotate prop is 
   </div>
   <button
     className="lock-button"
-    onClick={[Function]}
     style={
       Object {
         "height": "15%",
