@@ -27,6 +27,7 @@ const Project = props => {
       appear
       in={show}
       addEndListener={(node, done) => {
+        /* istanbul ignore next */
         TweenMax.to(node, 0.55, {
           y: 0,
           autoAlpha: show ? 1 : 0,
