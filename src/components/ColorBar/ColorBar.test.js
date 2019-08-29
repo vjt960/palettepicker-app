@@ -41,6 +41,7 @@ describe("ColorBar", () => {
     button.simulate("click");
     expect(handleLockStatus).toHaveBeenCalled();
   });
+
   it("should render the hex codes vertically if the vRotate prop is passed in", () => {
     const wrapper = shallow(
       <ColorBar color={{ hex: "#fff", locked: true }} vRotate={true} />
