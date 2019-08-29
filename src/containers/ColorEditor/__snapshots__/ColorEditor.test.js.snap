@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorEditor should match the snapshot 1`] = `
+<article
+  className="ColorEditor"
+  key="#123"
+>
+  <section
+    className="palette-inputs"
+  >
+    <div
+      className="palette-color"
+      style={
+        Object {
+          "backgroundColor": "#123",
+        }
+      }
+    />
+    <input
+      className="color-input"
+      onChange={[Function]}
+      placeholder="#XXXXXX"
+      type="text"
+      value="#123"
+    />
+  </section>
+  <section
+    className="palette-btns"
+  >
+    <button
+      className="update-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      Update Color
+    </button>
+    <button
+      className="remove-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-lg fa-trash"
+      />
+    </button>
+  </section>
+</article>
+`;
