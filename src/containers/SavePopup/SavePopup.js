@@ -10,7 +10,7 @@ import { parseProjects } from "../../_utilities/helpers";
 import "./SavePopup.scss";
 import ColorEditor from "../ColorEditor/ColorEditor";
 
-class SavePopup extends Component {
+export class SavePopup extends Component {
   state = {
     displayProjects: false,
     createNewProject: false,
@@ -106,12 +106,12 @@ class SavePopup extends Component {
   render() {
     const colorOptions = this.props.currentPalette
       .filter(palette => palette.locked === true)
-      .map(palette => {
+      .map((palette, index) => {
         return (
           <ColorEditor
             palette={palette}
             handleColor={this.handleColor}
-            key={palette.hex}
+            key={palette.hex + index}
           />
         );
       });

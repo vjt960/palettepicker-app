@@ -5,7 +5,7 @@ import { loginUser, createUser, getProjects } from "../../_utilities/apiCalls";
 import { parseProjects } from "../../_utilities/helpers";
 import "./userPopup.scss";
 
-class userPopup extends Component {
+export class userPopup extends Component {
   state = {
     username: "",
     password: "",

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectsContainer matches snapshot 1`] = `
+<section
+  className="ProjectsContainer"
+>
+  <header
+    className="projects-container-header"
+  >
+    <p>
+      Here are your projects!
+    </p>
+  </header>
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  >
+    <Project
+      id={9}
+      index={0}
+      key="9"
+      palettes={Array []}
+      project={
+        Object {
+          "palettes": Array [],
+          "projectId": 9,
+          "projectTitle": "t",
+          "removePalette": [MockFunction],
+          "removeProject": [MockFunction],
+        }
+      }
+      removePalette={[Function]}
+      removeProject={[Function]}
+      title="t"
+    />
+  </TransitionGroup>
+</section>
+`;

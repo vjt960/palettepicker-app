@@ -6,7 +6,7 @@ import { deleteProject, deletePalette } from "../../_utilities/apiCalls";
 import { connect } from "react-redux";
 import "./ProjectsContainer.scss";
 
-class ProjectsContainer extends Component {
+export class ProjectsContainer extends Component {
   state = {
     user: { userId: "123ddEad2199E", username: "Elliot" },
     error: ""
