@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import "./Palette.css";
 
-const Palette = props => {
+export const Palette = props => {
   const openEditor = () => {
     props.history.push("edit-palette");
   };
