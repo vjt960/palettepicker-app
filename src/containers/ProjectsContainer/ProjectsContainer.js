@@ -89,8 +89,9 @@ class ProjectsContainer extends Component {
     // ]);
   }
 
-  removeProject = id => {
-    this.props.removeUserProject(id);
+  removePalette = async (projectId, paletteId) => {
+    await deletePalette(projectId, paletteId);
+    this.props.removePalette(projectId, paletteId);
   };
 
   render() {
@@ -103,6 +104,7 @@ class ProjectsContainer extends Component {
         key={project.projectId}
         id={project.projectId}
         removeProject={this.removeProject}
+        removePalette={this.removePalette}
       />
     ));
     const textMessage = this.props.userProjects.length ? (
@@ -132,7 +134,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   addUserProjects: projects => dispatch(actions.addUserProjects(projects)),
-  removeUserProject: id => dispatch(actions.removeUserProject(id))
+  removePalette: (projectId, paletteId) =>
+    dispatch(actions.removePalette(projectId, paletteId))
 });
 
 export default connect(
