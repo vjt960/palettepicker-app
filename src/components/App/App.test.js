@@ -1,7 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "./App";
+import { shallow } from "enzyme";
+import { shallowToJson } from "enzyme-to-json";
 
-it("renders without crashing", () => {
-  expect(true).toEqual(true);
+describe("App", () => {
+  it("should match the snapshot", () => {
+    const wrapper = shallow(<App />);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
+  });
 });
