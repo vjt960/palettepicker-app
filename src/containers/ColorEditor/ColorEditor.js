@@ -17,7 +17,6 @@ export default class ColorEditor extends Component {
   };
 
   handleUpdate = () => {
-    //handleColor passed from SavePopup container
     this.props.handleColor(this.props.palette, "update", this.state.color);
     this.setState({ updated: false });
   };
@@ -34,9 +33,6 @@ export default class ColorEditor extends Component {
           ></div>
           <input
             type="text"
-            // pattern="{7}"
-            // required
-            // title="7 characters"
             placeholder="#XXXXXX"
             className="color-input"
             value={this.state.color}

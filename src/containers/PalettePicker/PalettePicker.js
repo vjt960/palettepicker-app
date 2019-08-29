@@ -50,7 +50,6 @@ class PalettePicker extends Component {
 
   updateColorScheme = e => {
     const { value } = e.target;
-    console.log(value);
     this.setState({ colorScheme: value });
   };
 
@@ -78,7 +77,6 @@ class PalettePicker extends Component {
   };
 
   generateColors = async (previousColors = []) => {
-    // The possible values are 'mono', 'contrast', 'triade', 'tetrade', and 'analogic'
     const { hue, hueLocked, colorScheme, variation, colors } = this.state;
     const { pColorScheme = "triade" } = this.props;
     let generatedHue;
@@ -154,11 +152,6 @@ class PalettePicker extends Component {
     );
   }
 }
-
-//handle save button disable, needs to check elements that are locked.
-// const mapStateToProps = ({
-
-// })
 
 const mapDispatchToProps = dispatch => ({
   createNewProject: project => dispatch(actions.createNewProject(project)),

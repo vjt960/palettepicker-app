@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
+import {
+  createPalette,
+  getProjects,
+  createProject
+} from "../../_utilities/apiCalls";
+import { parseProjects } from "../../_utilities/helpers";
 import "./SavePopup.scss";
 import ColorEditor from "../ColorEditor/ColorEditor";
 
@@ -10,7 +16,9 @@ class SavePopup extends Component {
     createNewProject: false,
     selectedProject: "",
     newProjectTitle: "",
-    newProjectDesc: ""
+    newProjectDesc: "",
+    paletteTitle: "",
+    error: ""
   };
 
   handleExit = () => {
@@ -22,16 +30,38 @@ class SavePopup extends Component {
     this.setState({ selectedProject: id });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+    if (!this.state.paletteTitle) {
+      this.setState({ error: "*Required " });
+      return;
+    }
+    this.setState({ error: "" });
     if (this.state.displayProjects) {
-      console.log("updateExisting", this.state.selectedProject);
+      const colors = this.retrieveFavorites();
+      const { selectedProject, paletteTitle } = this.state;
+      const user = this.props.userDetails;
+      try {
+        await createPalette(selectedProject, paletteTitle, colors);
+        const projectsData = await getProjects(user.id).catch(() => []);
+        const projects = parseProjects(projectsData);
+        this.props.reloadProjects(projects);
+      } catch ({ message }) {}
     } else {
-      console.log(
-        "createNew",
-        this.state.newProjectDesc,
-        this.state.newProjectTitle
-      );
+      const colors = this.retrieveFavorites();
+      const user = this.props.userDetails;
+      const { newProjectTitle, newProjectDesc, paletteTitle } = this.state;
+      try {
+        const newProjectID = await createProject(
+          user.id,
+          newProjectTitle,
+          newProjectDesc
+        );
+        await createPalette(newProjectID, paletteTitle, colors);
+        const projectsData = await getProjects(user.id).catch(() => []);
+        const projects = parseProjects(projectsData);
+        this.props.reloadProjects(projects);
+      } catch ({ message }) {}
     }
     this.retrieveFavorites();
     this.handleExit();
@@ -39,13 +69,11 @@ class SavePopup extends Component {
 
   retrieveFavorites = () => {
     const favorites = this.props.currentPalette
-      .filter(color => {
-        if (color.locked === true) return color;
-      })
+      .filter(color => color.locked === true)
       .map(favoriteColor => {
         return favoriteColor.hex;
       });
-    console.log(favorites);
+    return favorites;
   };
 
   handleColor = (color, format, newColor) => {
@@ -148,12 +176,14 @@ class SavePopup extends Component {
             </div>
             <form className="palette-form">
               <header>
+                <p className="error-message">{this.state.error}</p>
                 <label htmlFor="palette-title">Palette Title:</label>
                 <input
                   type="text"
                   maxLength="25"
                   autoComplete="off"
-                  name="palette-title"
+                  name="paletteTitle"
+                  onChange={e => this.handleChange(e)}
                 />
               </header>
               <section className="palettes-section">{colorOptions}</section>
@@ -197,13 +227,15 @@ class SavePopup extends Component {
 }
 
 const mapStateToProps = store => ({
+  userDetails: store.userDetails,
   currentPalette: store.currentPalette,
   userProjects: store.userProjects
 });
 
 const mapDispatchToProps = dispatch => ({
   updateCurrentPalette: palette =>
-    dispatch(actions.updateCurrentPalette(palette))
+    dispatch(actions.updateCurrentPalette(palette)),
+  reloadProjects: projects => dispatch(actions.reloadProjects(projects))
 });
 
 export default connect(

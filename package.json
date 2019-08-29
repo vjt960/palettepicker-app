@@ -47,5 +47,10 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
-  }
+  }, 
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/_redux/reducers/combineReducers.js"
+  ]
 }

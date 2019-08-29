@@ -20,7 +20,7 @@ export const Palette = props => {
     <article className="Palette">
       <button
         className="palette-delete"
-        onClick={() => console.log("Delete me")}
+        onClick={() => props.removePalette(props.projectId, props.id)}
       >
         X
       </button>

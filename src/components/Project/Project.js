@@ -10,6 +10,9 @@ const Project = props => {
       <Palette
         title={palette.paletteTitle}
         colors={palette.paletteColors}
+        removePalette={props.removePalette}
+        projectId={props.id}
+        id={palette.paletteId}
         key={palette.paletteId}
       />
     );

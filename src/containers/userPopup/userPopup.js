@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
+import { loginUser, createUser, getProjects } from "../../_utilities/apiCalls";
+import { parseProjects } from "../../_utilities/helpers";
 import "./userPopup.scss";
 
 class userPopup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: ""
   };
 
   handleExit = () => {
@@ -15,33 +18,43 @@ class userPopup extends Component {
 
   handlePageChange = destination => this.props.history.push(`/${destination}`);
 
-  // user logs in, get user data / projects from server
-  // dispatch data to store
-  // close popup window
-  handleLogin = e => {
-    console.log("logging in...");
+  handleLogin = async e => {
+    const { username, password } = this.state;
     e.preventDefault();
-    // capture login values
-    // verify against server and retrieve
-    // return user details and projects
-    // REDUX update store => ACTION: this.props.addUserProjects(projects)
-    // REDUX update user => ACTION: this.props.updateCurrentUser(userDetails)
-    // login user / close window
+    try {
+      const user = await loginUser(username, password);
+      const projectsData = await getProjects(user.id).catch(() => []);
+      const projects = parseProjects(projectsData);
+      this.props.updateCurrentUser(user, projects);
+      this.setState({ error: "" });
+      this.handleExit();
+    } catch (error) {
+      this.setState({ error: error.message });
+      this.clearInputs();
+    }
   };
 
-  handleRegister = e => {
-    console.log("Registering...");
+  handleRegister = async e => {
+    const { username, password } = this.state;
     e.preventDefault();
-    // capture register values
-    // make sure user doesnt already exist in DB
-    // Good: add user to database
-    // REDUX update user => ACTION: this.props.updateCurrentUser(userDetails)
-    // login user / close window
+    try {
+      const newUser = await createUser(username, password);
+      this.props.updateCurrentUser(newUser);
+      this.setState({ error: "" });
+      this.handleExit();
+    } catch (error) {
+      this.setState({ error: error.message });
+      this.clearInputs();
+    }
   };
 
   handleChanges = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  };
+
+  clearInputs = () => {
+    this.setState({ username: "", password: "" });
   };
 
   render() {
@@ -109,6 +122,7 @@ class userPopup extends Component {
             {this.props.location.pathname === "/login"
               ? loginFormat
               : registerFormat}
+            <p className="error-message">{this.state.error}</p>
           </section>
         </section>
       </Fragment>
@@ -117,9 +131,8 @@ class userPopup extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addUserProjects: projects => dispatch(actions.addUserProjects(projects)),
-  updateCurrentUser: userDetails =>
-    dispatch(actions.updateCurrentUser(userDetails))
+  updateCurrentUser: (userDetails, projects) =>
+    dispatch(actions.updateCurrentUser(userDetails, projects))
 });
 
 export default connect(

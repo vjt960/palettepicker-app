@@ -19,7 +19,15 @@ export default function ColorBar(props) {
     opacity: 1
   };
   return (
-    <div className="color-block" style={defaultStyle}>
+    <div
+      className="color-block"
+      onClick={
+        props.color.locked
+          ? () => props.handleLockStatus(props.color, false)
+          : () => props.handleLockStatus(props.color, true)
+      }
+      style={defaultStyle}
+    >
       <div
         className={`color-bar color-${props.number + 1}`}
         style={props.color.locked ? lockedBarStyle : colorBarStyle}
@@ -30,11 +38,6 @@ export default function ColorBar(props) {
       </div>
       <button
         className="lock-button"
-        onClick={
-          props.color.locked
-            ? () => props.handleLockStatus(props.color, false)
-            : () => props.handleLockStatus(props.color, true)
-        }
         style={props.color.locked ? lockedStyle : null}
       >
         {props.color.locked ? (

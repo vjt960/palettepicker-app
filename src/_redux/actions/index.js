@@ -12,13 +12,6 @@ export const createNewProject = project => {
   };
 };
 
-export const updateExistingProject = project => {
-  return {
-    type: "UPDATE_EXISTING_PROJECT",
-    project
-  };
-};
-
 export const updateCurrentPalette = palette => {
   return {
     type: "UPDATE_CURRENT_PALETTE",
@@ -33,17 +26,38 @@ export const removeUserProject = id => {
   };
 };
 
-export const updateCurrentUser = userDetails => {
+export const updateCurrentUser = (userDetails, projects = []) => {
   return {
     type: "UPDATE_CURRENT_USER",
-    userDetails
+    userDetails,
+    projects
   };
 };
 
-export const logoutUser = user => {
+export const logoutUser = () => {
   return {
-    type: "LOGOUT_USER",
-    user
+    type: "LOGOUT_USER"
   };
 };
 
+export const reloadProjects = projects => {
+  return {
+    type: "RELOAD_PROJECTS",
+    projects
+  };
+};
+
+export const removePalette = (projectId, paletteId) => {
+  return {
+    type: "REMOVE_PALETTE",
+    projectId,
+    paletteId
+  };
+};
+
+export const updateExistingProject = project => {
+  return {
+    type: "UPDATE_EXISTING_PROJECT",
+    project
+  };
+};
