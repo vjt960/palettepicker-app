@@ -82,4 +82,14 @@ describe("actions", () => {
     const result = actions.addUserProjects(project);
     expect(result).toEqual(expectedAction);
   });
+
+  it("should have a type of UPDATE_EXISTING_PROJECT", () => {
+    const project = { id: 9 };
+    const expectedAction = {
+      type: "UPDATE_EXISTING_PROJECT",
+      project
+    };
+    const result = actions.updateExistingProject(project);
+    expect(result).toEqual(expectedAction);
+  });
 });

@@ -54,3 +54,10 @@ export const removePalette = (projectId, paletteId) => {
     paletteId
   };
 };
+
+export const updateExistingProject = project => {
+  return {
+    type: "UPDATE_EXISTING_PROJECT",
+    project
+  };
+};
