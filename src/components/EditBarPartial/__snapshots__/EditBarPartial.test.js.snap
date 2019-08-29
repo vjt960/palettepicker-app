@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditBarPartial should have pb-active rendering if props.editable is false 1`] = `
+<section
+  className="PhraseBlock pb-active"
+>
+  <header
+    className="phrase-background"
+  >
+    <h2>
+      Choose a color!
+    </h2>
+  </header>
+  <section
+    className="phrase-block-content"
+  >
+    <button
+      className="phrase-button"
+      onClick={[Function]}
+    >
+      Refresh Colors
+    </button>
+    <div
+      className="current-format"
+    >
+      <div
+        className="format-hue"
+      >
+        <p />
+        <i
+          className="fas fa-sm fa-unlock-alt"
+        />
+      </div>
+      <p />
+      <p />
+    </div>
+  </section>
+</section>
+`;
+
+exports[`EditBarPartial should have pb-inactive rendering if props.editable is true 1`] = `
+<section
+  className="PhraseBlock pb-inactive"
+>
+  <header
+    className="phrase-background"
+  >
+    <h2>
+      Choose a color!
+    </h2>
+  </header>
+  <section
+    className="phrase-block-content"
+  >
+    <button
+      className="phrase-button"
+      onClick={[Function]}
+    >
+      Refresh Colors
+    </button>
+    <div
+      className="current-format"
+    >
+      <div
+        className="format-hue"
+      >
+        <p />
+        <i
+          className="fas fa-sm fa-unlock-alt"
+        />
+      </div>
+      <p />
+      <p />
+    </div>
+  </section>
+</section>
+`;
+
+exports[`EditBarPartial should match the snapshot 1`] = `
+<section
+  className="PhraseBlock pb-active"
+>
+  <header
+    className="phrase-background"
+  >
+    <h2>
+      Choose a color!
+    </h2>
+  </header>
+  <section
+    className="phrase-block-content"
+  >
+    <button
+      className="phrase-button locked-btn"
+      onClick={[Function]}
+    >
+      Refresh Colors
+    </button>
+    <div
+      className="current-format"
+    >
+      <div
+        className="format-hue"
+      >
+        <p />
+        <i
+          className="fas fa-sm fa-lock"
+        />
+      </div>
+      <p />
+      <p />
+    </div>
+  </section>
+</section>
+`;

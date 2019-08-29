@@ -1,11 +1,11 @@
 import React from "react";
-import App from "./App";
+import LandingPage from "./LandingPage";
 import { shallow } from "enzyme";
 import { shallowToJson } from "enzyme-to-json";
 
-describe("App", () => {
+describe("LandingPage", () => {
   it("should match the snapshot", () => {
-    const wrapper = shallow(<App />);
+    const wrapper = shallow(<LandingPage />);
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 });

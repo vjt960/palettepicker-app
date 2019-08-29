@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../_redux/actions";
 import "./SavePopup.scss";
-import ColorEditor from "../../components/ColorEditor/ColorEditor";
+import ColorEditor from "../ColorEditor/ColorEditor";
 
 class SavePopup extends Component {
   state = {
