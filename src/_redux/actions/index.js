@@ -53,3 +53,11 @@ export const reloadProjects = projects => {
     projects
   };
 };
+
+export const removePalette = (projectId, paletteId) => {
+  return {
+    type: "REMOVE_PALETTE",
+    projectId,
+    paletteId
+  };
+};
